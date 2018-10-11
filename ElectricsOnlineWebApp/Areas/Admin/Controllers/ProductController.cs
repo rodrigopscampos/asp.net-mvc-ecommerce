@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
@@ -15,8 +14,6 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
                 cfg.CreateMap<Product, Models.Product>();
                 cfg.CreateMap<Models.Product, Product>();
             });
-
-            ViewBag.Suppliers = _ctx.Suppliers;
         }
         // GET: Admin/Product
         public ActionResult Index()

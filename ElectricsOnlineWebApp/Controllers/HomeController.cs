@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElectricsOnlineWebApp.Controllers
@@ -22,21 +20,14 @@ namespace ElectricsOnlineWebApp.Controllers
             List<Product> products;
             if (catName == "")
             {
-                products = _ctx.Products.ToList<Product>();
+                products = _ctx.Products.ToList();
             } else { 
                 products = _ctx.Products.Where(p => p.Category == catName).ToList<Product>();
             }
             ViewBag.Products = products;
             return View("Index");
         }
-
-        public ActionResult Suppliers()
-        {
-            List<Supplier> suppliers = _ctx.Suppliers.ToList<Supplier>();
-            ViewBag.Suppliers = suppliers;
-            return View();
-        }
-
+        
         public ActionResult AddToCart(int id)
         {
             addToCart(id);
@@ -46,7 +37,7 @@ namespace ElectricsOnlineWebApp.Controllers
         private void addToCart(int pId)
         {
             // check if product is valid
-            Product product = _ctx.Products.FirstOrDefault(p => p.PID == pId);
+            var product = _ctx.Products.FirstOrDefault(p => p.PID == pId);
             if (product != null && product.UnitsInStock > 0)
             {
                 // check if product already existed

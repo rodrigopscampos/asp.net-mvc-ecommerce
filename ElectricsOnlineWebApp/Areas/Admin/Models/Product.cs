@@ -36,11 +36,5 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Models
 
         public int SID { get; set; }
         public int ROL { get; set; }
-        
-        public Supplier Supplier {
-            get {
-                return _ctx.Suppliers.FirstOrDefault(s => s.SID == this.SID);
-            }
-        }
     }
 }
