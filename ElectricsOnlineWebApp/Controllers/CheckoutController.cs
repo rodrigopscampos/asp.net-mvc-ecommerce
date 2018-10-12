@@ -41,15 +41,15 @@ namespace ElectricsOnlineWebApp.Controllers
         
         public JsonResult QuanityChange(int type, int pId)
         {
-            ElectricsOnlineEntities context = new ElectricsOnlineEntities();
+            DbStoreContext context = new DbStoreContext();
 
-            ShoppingCartData product = context.ShoppingCartDatas.FirstOrDefault(p => p.PID == pId);
+            ShoppingCartData product = context.ShoppingCartDatas.FirstOrDefault(p => p.Id == pId);
             if (product == null)
             {
                 return Json(new { d = "0" });
             }
 
-            Product actualProduct = context.Products.FirstOrDefault(p => p.PID == pId);
+            Product actualProduct = context.Products.FirstOrDefault(p => p.Id == pId);
             int quantity;
             // if type 0, decrease quantity
             // if type 1, increase quanity
@@ -88,7 +88,7 @@ namespace ElectricsOnlineWebApp.Controllers
         [HttpGet]
         public JsonResult UpdateTotal()
         {
-            ElectricsOnlineEntities context = new ElectricsOnlineEntities();
+            DbStoreContext context = new DbStoreContext();
             decimal total;
             try
             {
@@ -106,7 +106,7 @@ namespace ElectricsOnlineWebApp.Controllers
             {
                 List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
                 carts.ForEach(a => {
-                    Product product = _ctx.Products.FirstOrDefault(p => p.PID == a.PID);
+                    Product product = _ctx.Products.FirstOrDefault(p => p.Id == a.Id);
                     product.UnitsInStock += a.Quantity;
                 });
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
@@ -175,7 +175,7 @@ namespace ElectricsOnlineWebApp.Controllers
                     {
                         OrderDate = DateTime.Now,
                         DeliveryDate = DateTime.Now.AddDays(5),
-                        CID = c.CID
+                        CustumerId = c.Id
                     };
 
                     _ctx.Customers.Add(c);
@@ -185,8 +185,8 @@ namespace ElectricsOnlineWebApp.Controllers
                     {
                         _ctx.Order_Products.Add(new Order_Products
                         {
-                            OrderID = o.OrderID,
-                            PID = i.PID,
+                            OrderID = o.Order_ProductsId,
+                            Id = i.Id,
                             Qty = i.Quantity,
                             TotalSale = i.Quantity * i.UnitPrice
                         });

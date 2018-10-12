@@ -7,7 +7,7 @@ namespace ElectricsOnlineWebApp
 {
     public partial class Product
     {
-        private ElectricsOnlineEntities _ctx = new ElectricsOnlineEntities();
+        private DbStoreContext _ctx = new DbStoreContext();
         public List<Product> All
         {
             get

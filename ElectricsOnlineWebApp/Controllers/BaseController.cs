@@ -6,7 +6,7 @@ namespace ElectricsOnlineWebApp.Controllers
 {
     public class BaseController : Controller
     {
-        protected ElectricsOnlineEntities _ctx = new ElectricsOnlineEntities();
+        protected DbStoreContext _ctx = new DbStoreContext();
 
         public BaseController()
         {

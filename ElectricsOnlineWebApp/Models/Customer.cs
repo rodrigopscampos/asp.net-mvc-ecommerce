@@ -9,7 +9,8 @@ namespace ElectricsOnlineWebApp.Models
 {
     public class Customer
     {
-        public int CID { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "FirstName is required")]
         [Display(Name = "First Name")]

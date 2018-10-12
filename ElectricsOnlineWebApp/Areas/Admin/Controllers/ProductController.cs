@@ -25,7 +25,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
 
         private Models.Product _getProduct(int id)
         {
-            var product = _ctx.Products.FirstOrDefault(p => p.PID == id);
+            var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
             var model = Mapper.Map<Product, Models.Product>(product);
             return model;
         }
@@ -84,7 +84,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
             try
             {
                 // TODO: Add update logic here
-                Product p = _ctx.Products.FirstOrDefault(pr => pr.PID == model.PID);
+                Product p = _ctx.Products.FirstOrDefault(pr => pr.Id == model.PID);
 
                 p.UnitPrice = model.UnitPrice;
                 p.UnitsInStock = model.UnitsInStock;
@@ -106,7 +106,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
         // GET: Admin/Product/Delete/5
         public ActionResult Delete(int id)
         {
-            var product = _ctx.Products.FirstOrDefault(p => p.PID == id);
+            var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
             return RedirectToAction("Index");
         }
     }

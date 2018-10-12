@@ -2,9 +2,9 @@
 
 namespace ElectricsOnlineWebApp
 {
-    public class ElectricsOnlineEntities : DbContext
+    public class DbStoreContext : DbContext
     {
-        public ElectricsOnlineEntities()
+        public DbStoreContext()
         {
 
         }

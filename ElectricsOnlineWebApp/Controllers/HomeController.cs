@@ -37,11 +37,11 @@ namespace ElectricsOnlineWebApp.Controllers
         private void addToCart(int pId)
         {
             // check if product is valid
-            var product = _ctx.Products.FirstOrDefault(p => p.PID == pId);
+            var product = _ctx.Products.FirstOrDefault(p => p.Id == pId);
             if (product != null && product.UnitsInStock > 0)
             {
                 // check if product already existed
-                ShoppingCartData cart = _ctx.ShoppingCartDatas.FirstOrDefault(c => c.PID == pId);
+                ShoppingCartData cart = _ctx.ShoppingCartDatas.FirstOrDefault(c => c.Id == pId);
                 if (cart != null)
                 {
                     cart.Quantity++;
@@ -52,7 +52,7 @@ namespace ElectricsOnlineWebApp.Controllers
                     cart = new ShoppingCartData
                     {
                         PName = product.PName,
-                        PID = product.PID,
+                        Id = product.Id,
                         UnitPrice = product.UnitPrice,
                         Quantity = 1
                     };

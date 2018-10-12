@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using ElectricsOnlineWebApp.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
@@ -28,7 +26,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
         // GET: Admin/Order/Details/5
         public ActionResult Details(int id)
         {
-            var order = _ctx.Orders.FirstOrDefault(o => o.OrderID == id);
+            var order = _ctx.Orders.FirstOrDefault(o => o.Order_ProductsId == id);
             var model = Mapper.Map<OrderModel>(order);
             return View(model);
         }

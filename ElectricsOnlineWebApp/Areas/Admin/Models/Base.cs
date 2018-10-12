@@ -7,6 +7,6 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Models
 {
     public class Base
     {
-        protected ElectricsOnlineEntities _ctx = new ElectricsOnlineEntities();
+        protected DbStoreContext _ctx = new DbStoreContext();
     }
 }
