@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ElectricsOnlineWebApp.Models
 {
     public class Customer
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "FirstName is required")]
         [Display(Name = "First Name")]
         public string FName { get; set; }
