@@ -9,7 +9,7 @@ namespace AspNetMvcEcommerce.Models
         {
             get
             {
-                return this.Order_Products.Sum(p => p.TotalSale);
+                return this.Itens.Sum(p => p.TotalSale);
             }
         }
     }

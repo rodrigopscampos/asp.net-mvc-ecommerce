@@ -21,7 +21,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             var units = new List<int>();
             var rol = new List<int>();
             var labels = new List<string>();
-            foreach (var i in _ctx.Products)
+            foreach (var i in _ctx.Produtos)
             {
                 units.Add(i.UnitsInStock);
                 rol.Add(i.ROL);

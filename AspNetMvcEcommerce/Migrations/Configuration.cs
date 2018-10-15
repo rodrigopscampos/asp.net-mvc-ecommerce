@@ -5,14 +5,14 @@ namespace AspNetMvcEcommerce.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DbStoreContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AspNetMvcEcommerceContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(AspNetMvcEcommerce.DbStoreContext context)
+        protected override void Seed(AspNetMvcEcommerce.AspNetMvcEcommerceContext context)
         {
             //  This method will be called after migrating to the latest version.
 

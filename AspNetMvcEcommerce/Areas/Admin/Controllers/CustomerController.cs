@@ -11,31 +11,31 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
     {
         public CustomerController(){
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Cliente, AspNetMvcEcommerce.Models.Customer>();
+                cfg.CreateMap<Cliente, AspNetMvcEcommerce.Models.Cliente>();
             });
         }
 
         // GET: Admin/Customer
         public ActionResult Index()
         {
-            var customers = _ctx.Customers.ToList();
-            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<AspNetMvcEcommerce.Models.Customer>>(customers);
+            var customers = _ctx.Clientes.ToList();
+            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<AspNetMvcEcommerce.Models.Cliente>>(customers);
             return View("Index", model);
         }
 
         // GET: Admin/Customer/Details/5
         public ActionResult Details(int id)
         {
-            var customer = _ctx.Customers.FirstOrDefault(c => c.Id == id);
-            var model = Mapper.Map<Cliente, AspNetMvcEcommerce.Models.Customer>(customer);
+            var customer = _ctx.Clientes.FirstOrDefault(c => c.Id == id);
+            var model = Mapper.Map<Cliente, AspNetMvcEcommerce.Models.Cliente>(customer);
             return View(model);
         }
 
         // GET: Admin/Customer/Delete/5
         public ActionResult Delete(int id)
         {
-            var customer = _ctx.Customers.FirstOrDefault(c => c.Id == id);
-            _ctx.Customers.Remove(customer);
+            var customer = _ctx.Clientes.FirstOrDefault(c => c.Id == id);
+            _ctx.Clientes.Remove(customer);
             _ctx.SaveChanges();
 
             return RedirectToAction("Index");

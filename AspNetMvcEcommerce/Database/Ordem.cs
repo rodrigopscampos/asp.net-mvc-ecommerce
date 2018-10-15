@@ -7,13 +7,13 @@ namespace AspNetMvcEcommerce
     {
         public int Id { get; set; }
 
-        public DateTime OrderDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
+        public DateTime DataDeCriacao { get; set; }
+        public DateTime DataDeEntrega { get; set; }
 
-        public int CustumerId { get; set; }
+        public int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
-        public int Order_ProductsId { get; set; }
-        public virtual ICollection<OrdemItem> Order_Products { get; set; }
+        public int ItensId { get; set; }
+        public virtual ICollection<OrdemItem> Itens { get; set; }
     }
 }

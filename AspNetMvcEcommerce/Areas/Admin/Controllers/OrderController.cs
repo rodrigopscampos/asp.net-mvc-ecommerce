@@ -18,7 +18,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Index()
         {
-            var orders = _ctx.Orders;
+            var orders = _ctx.Ordens;
             var model = Mapper.Map<IEnumerable<Ordem>, IEnumerable<OrderModel>>(orders);
             return View(model);
         }
@@ -26,7 +26,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // GET: Admin/Order/Details/5
         public ActionResult Details(int id)
         {
-            var order = _ctx.Orders.FirstOrDefault(o => o.Order_ProductsId == id);
+            var order = _ctx.Ordens.FirstOrDefault(o => o.ItensId == id);
             var model = Mapper.Map<OrderModel>(order);
             return View(model);
         }

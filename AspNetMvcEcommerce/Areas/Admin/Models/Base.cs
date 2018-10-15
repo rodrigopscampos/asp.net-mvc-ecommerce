@@ -7,6 +7,6 @@ namespace AspNetMvcEcommerce.Areas.Admin.Models
 {
     public class Base
     {
-        protected DbStoreContext _ctx = new DbStoreContext();
+        protected AspNetMvcEcommerceContext _ctx = new AspNetMvcEcommerceContext();
     }
 }

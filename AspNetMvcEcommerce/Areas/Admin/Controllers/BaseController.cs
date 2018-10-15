@@ -9,6 +9,6 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class BaseController : Controller
     {
-        protected DbStoreContext _ctx = new DbStoreContext();
+        protected AspNetMvcEcommerceContext _ctx = new AspNetMvcEcommerceContext();
     }
 }

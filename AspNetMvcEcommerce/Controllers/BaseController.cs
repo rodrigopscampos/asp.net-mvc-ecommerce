@@ -6,7 +6,7 @@ namespace AspNetMvcEcommerce.Controllers
 {
     public class BaseController : Controller
     {
-        protected DbStoreContext _ctx = new DbStoreContext();
+        protected AspNetMvcEcommerceContext _ctx = new AspNetMvcEcommerceContext();
 
         public BaseController()
         {

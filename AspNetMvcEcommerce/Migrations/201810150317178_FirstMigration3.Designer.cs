@@ -7,13 +7,13 @@ namespace AspNetMvcEcommerce.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class abc : IMigrationMetadata
+    public sealed partial class FirstMigration3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(abc));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810150235169_abc"; }
+            get { return "201810150317178_FirstMigration3"; }
         }
         
         string IMigrationMetadata.Source

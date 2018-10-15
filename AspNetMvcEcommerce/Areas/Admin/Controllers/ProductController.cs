@@ -18,14 +18,14 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            var products = _ctx.Products;
+            var products = _ctx.Produtos;
             var model = Mapper.Map<IEnumerable<Produto>, IEnumerable<Models.Product>>(products);
             return View(model);
         }
 
         private Models.Product _getProduct(int id)
         {
-            var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
+            var product = _ctx.Produtos.FirstOrDefault(p => p.Id == id);
             var model = Mapper.Map<Produto, Models.Product>(product);
             return model;
         }
@@ -61,7 +61,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
                     UnitPrice = model.UnitPrice,
                     UnitsInStock = model.UnitsInStock
                 };
-                _ctx.Products.Add(product);
+                _ctx.Produtos.Add(product);
                 _ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,7 +84,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             try
             {
                 // TODO: Add update logic here
-                Produto p = _ctx.Products.FirstOrDefault(pr => pr.Id == model.PID);
+                Produto p = _ctx.Produtos.FirstOrDefault(pr => pr.Id == model.PID);
 
                 p.UnitPrice = model.UnitPrice;
                 p.UnitsInStock = model.UnitsInStock;
@@ -106,7 +106,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // GET: Admin/Product/Delete/5
         public ActionResult Delete(int id)
         {
-            var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
+            var product = _ctx.Produtos.FirstOrDefault(p => p.Id == id);
             return RedirectToAction("Index");
         }
     }

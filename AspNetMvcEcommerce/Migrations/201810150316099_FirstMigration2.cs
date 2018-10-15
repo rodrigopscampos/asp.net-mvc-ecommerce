@@ -3,64 +3,59 @@ namespace AspNetMvcEcommerce.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class abc : DbMigration
+    public partial class FirstMigration2 : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Customers",
+                "dbo.Clientes",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        FName = c.String(),
-                        LName = c.String(),
+                        Nome = c.String(),
                         Phone = c.String(),
-                        Address1 = c.String(),
-                        Address2 = c.String(),
-                        Suburb = c.String(),
-                        Postcode = c.String(),
-                        State = c.String(),
+                        Endereco = c.String(),
+                        Bairro = c.String(),
+                        CEP = c.String(),
+                        Estado = c.String(),
                         Ctype = c.String(),
-                        CardNo = c.String(),
-                        ExpDate = c.DateTime(nullable: false),
+                        CcNumero = c.String(),
+                        CcValidade = c.DateTime(nullable: false),
                         Email = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Orders",
+                "dbo.Ordems",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        OrderDate = c.DateTime(nullable: false),
-                        DeliveryDate = c.DateTime(nullable: false),
-                        CustumerId = c.Int(nullable: false),
-                        Order_ProductsId = c.Int(nullable: false),
+                        DataDeCriacao = c.DateTime(nullable: false),
+                        DataDeEntrega = c.DateTime(nullable: false),
+                        ClienteId = c.Int(nullable: false),
+                        ItensId = c.Int(nullable: false),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        Customer_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Customers", t => t.Customer_Id)
-                .Index(t => t.Customer_Id);
+                .ForeignKey("dbo.Clientes", t => t.ClienteId, cascadeDelete: true)
+                .Index(t => t.ClienteId);
             
             CreateTable(
-                "dbo.Order_Products",
+                "dbo.OrdemItems",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         OrderID = c.Int(nullable: false),
                         Qty = c.Int(nullable: false),
                         TotalSale = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Product_Id = c.Int(),
+                        Ordem_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
-                .ForeignKey("dbo.Products", t => t.Product_Id)
-                .Index(t => t.OrderID)
-                .Index(t => t.Product_Id);
+                .ForeignKey("dbo.Ordems", t => t.Ordem_Id)
+                .Index(t => t.Ordem_Id);
             
             CreateTable(
-                "dbo.Products",
+                "dbo.Produtoes",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -91,17 +86,15 @@ namespace AspNetMvcEcommerce.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Order_Products", "Product_Id", "dbo.Products");
-            DropForeignKey("dbo.Order_Products", "OrderID", "dbo.Orders");
-            DropForeignKey("dbo.Orders", "Customer_Id", "dbo.Customers");
-            DropIndex("dbo.Order_Products", new[] { "Product_Id" });
-            DropIndex("dbo.Order_Products", new[] { "OrderID" });
-            DropIndex("dbo.Orders", new[] { "Customer_Id" });
+            DropForeignKey("dbo.OrdemItems", "Ordem_Id", "dbo.Ordems");
+            DropForeignKey("dbo.Ordems", "ClienteId", "dbo.Clientes");
+            DropIndex("dbo.OrdemItems", new[] { "Ordem_Id" });
+            DropIndex("dbo.Ordems", new[] { "ClienteId" });
             DropTable("dbo.ShoppingCartDatas");
-            DropTable("dbo.Products");
-            DropTable("dbo.Order_Products");
-            DropTable("dbo.Orders");
-            DropTable("dbo.Customers");
+            DropTable("dbo.Produtoes");
+            DropTable("dbo.OrdemItems");
+            DropTable("dbo.Ordems");
+            DropTable("dbo.Clientes");
         }
     }
 }

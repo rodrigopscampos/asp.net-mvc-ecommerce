@@ -15,8 +15,5 @@ namespace AspNetMvcEcommerce
         public string Description { get; set; }
         public int SID { get; set; }
         public int ROL { get; set; }
-
-        //todo: remover
-        public virtual ICollection<OrdemItem> Order_Products { get; set; }
     }
 }

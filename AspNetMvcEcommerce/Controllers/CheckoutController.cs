@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Controllers
@@ -41,7 +40,7 @@ namespace AspNetMvcEcommerce.Controllers
         
         public JsonResult QuanityChange(int type, int pId)
         {
-            DbStoreContext context = new DbStoreContext();
+            AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
 
             ShoppingCartData product = context.ShoppingCartDatas.FirstOrDefault(p => p.Id == pId);
             if (product == null)
@@ -49,7 +48,7 @@ namespace AspNetMvcEcommerce.Controllers
                 return Json(new { d = "0" });
             }
 
-            Produto actualProduct = context.Products.FirstOrDefault(p => p.Id == pId);
+            Produto actualProduct = context.Produtos.FirstOrDefault(p => p.Id == pId);
             int quantity;
             // if type 0, decrease quantity
             // if type 1, increase quanity
@@ -88,7 +87,7 @@ namespace AspNetMvcEcommerce.Controllers
         [HttpGet]
         public JsonResult UpdateTotal()
         {
-            DbStoreContext context = new DbStoreContext();
+            AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
             decimal total;
             try
             {
@@ -106,7 +105,7 @@ namespace AspNetMvcEcommerce.Controllers
             {
                 List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
                 carts.ForEach(a => {
-                    Produto product = _ctx.Products.FirstOrDefault(p => p.Id == a.Id);
+                    Produto product = _ctx.Produtos.FirstOrDefault(p => p.Id == a.Id);
                     product.UnitsInStock += a.Quantity;
                 });
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
@@ -126,66 +125,48 @@ namespace AspNetMvcEcommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Purchase(AspNetMvcEcommerce.Models.Customer customer)
+        public ActionResult Purchase(AspNetMvcEcommerce.Models.Cliente customer)
         {
             ViewBag.States = states;
             ViewBag.Cards = cards;
 
             if (ModelState.IsValid)
             {
-                if (customer.ExpDate <= DateTime.Now)
+                if (customer.CcValidade <= DateTime.Now)
                 {
                     ModelState.AddModelError("", "Credit card has already expired");
-                }
-
-                if (customer.Ctype == "AMEX")
-                {
-                    if (customer.CardNo.Length != 15)
-                    {
-                        ModelState.AddModelError("", "AMEX must be 15 digits");
-                    }
-                }
-                else
-                {
-                    if (customer.CardNo.Length != 16)
-                    {
-                        ModelState.AddModelError("", customer.Ctype + "must be 16 digits");
-                    }
                 }
 
                 if (ModelState.IsValid)
                 {
                     Cliente c = new Cliente
                     {
-                        FName = customer.FName,
-                        LName = customer.LName,
+                        Nome = customer.Nome,
                         Email = customer.Email,
                         Phone = customer.Phone,
-                        Address1 = customer.Address1,
-                        Address2 = customer.Address2,
-                        Suburb = customer.Suburb,
-                        Postcode = customer.Postcode,
-                        State = customer.State,
-                        Ctype = customer.Ctype,
-                        CardNo = customer.CardNo,
-                        ExpDate = customer.ExpDate
+                        Endereco = customer.Endereco,
+                        Bairro = customer.Bairro,
+                        CEP = customer.CEP,
+                        Estado = customer.Estado,
+                        CcNumero = customer.CcNumero,
+                        CcValidade = customer.CcValidade
                     };
 
                     Ordem o = new Ordem
                     {
-                        OrderDate = DateTime.Now,
-                        DeliveryDate = DateTime.Now.AddDays(5),
-                        CustumerId = c.Id
+                        DataDeCriacao = DateTime.Now,
+                        DataDeEntrega = DateTime.Now.AddDays(5),
+                        ClienteId = c.Id
                     };
 
-                    _ctx.Customers.Add(c);
-                    _ctx.Orders.Add(o);
+                    _ctx.Clientes.Add(c);
+                    _ctx.Ordens.Add(o);
 
                     foreach (var i in _ctx.ShoppingCartDatas.ToList<ShoppingCartData>())
                     {
-                        _ctx.Order_Products.Add(new OrdemItem
+                        _ctx.IrdemItens.Add(new OrdemItem
                         {
-                            OrderID = o.Order_ProductsId,
+                            OrderID = o.ItensId,
                             Id = i.Id,
                             Qty = i.Quantity,
                             TotalSale = i.Quantity * i.UnitPrice
@@ -196,7 +177,6 @@ namespace AspNetMvcEcommerce.Controllers
                     _ctx.SaveChanges();
 
                     return RedirectToAction("PurchasedSuccess");
-
                 }
             }
 
