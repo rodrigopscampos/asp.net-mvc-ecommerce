@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp
+namespace AspNetMvcEcommerce
 {
     public class FilterConfig
     {

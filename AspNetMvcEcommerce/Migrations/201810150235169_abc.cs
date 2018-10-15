@@ -1,4 +1,4 @@
-namespace ElectricsOnlineWebApp.Migrations
+namespace AspNetMvcEcommerce.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

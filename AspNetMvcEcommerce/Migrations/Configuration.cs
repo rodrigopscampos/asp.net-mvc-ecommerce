@@ -1,4 +1,4 @@
-namespace ElectricsOnlineWebApp.Migrations
+namespace AspNetMvcEcommerce.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -12,7 +12,7 @@ namespace ElectricsOnlineWebApp.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ElectricsOnlineWebApp.DbStoreContext context)
+        protected override void Seed(AspNetMvcEcommerce.DbStoreContext context)
         {
             //  This method will be called after migrating to the latest version.
 

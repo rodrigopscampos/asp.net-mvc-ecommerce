@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(ElectricsOnlineWebApp.Startup))]
-namespace ElectricsOnlineWebApp
+[assembly: OwinStartupAttribute(typeof(AspNetMvcEcommerce.Startup))]
+namespace AspNetMvcEcommerce
 {
     public partial class Startup
     {

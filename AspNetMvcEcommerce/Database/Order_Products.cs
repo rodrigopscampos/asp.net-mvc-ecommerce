@@ -1,4 +1,4 @@
-﻿namespace ElectricsOnlineWebApp
+﻿namespace AspNetMvcEcommerce
 {
     public partial class Order_Products
     {

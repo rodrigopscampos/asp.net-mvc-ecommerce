@@ -1,4 +1,4 @@
-﻿namespace ElectricsOnlineWebApp
+﻿namespace AspNetMvcEcommerce
 {
     public class ShoppingCartData
     {

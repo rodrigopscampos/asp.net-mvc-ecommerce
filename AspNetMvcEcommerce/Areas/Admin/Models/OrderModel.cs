@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace ElectricsOnlineWebApp.Models
+namespace AspNetMvcEcommerce.Models
 {
-    public class OrderModel : ElectricsOnlineWebApp.Order
+    public class OrderModel : AspNetMvcEcommerce.Order
     {
 
         public decimal TotalPayment

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
+namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
     public class CustomerController : BaseController
     {
         public CustomerController(){
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Customer, ElectricsOnlineWebApp.Models.Customer>();
+                cfg.CreateMap<Customer, AspNetMvcEcommerce.Models.Customer>();
             });
         }
 
@@ -19,7 +19,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var customers = _ctx.Customers.ToList();
-            var model = Mapper.Map<IEnumerable<Customer>, IEnumerable<ElectricsOnlineWebApp.Models.Customer>>(customers);
+            var model = Mapper.Map<IEnumerable<Customer>, IEnumerable<AspNetMvcEcommerce.Models.Customer>>(customers);
             return View("Index", model);
         }
 
@@ -27,7 +27,7 @@ namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             var customer = _ctx.Customers.FirstOrDefault(c => c.Id == id);
-            var model = Mapper.Map<Customer, ElectricsOnlineWebApp.Models.Customer>(customer);
+            var model = Mapper.Map<Customer, AspNetMvcEcommerce.Models.Customer>(customer);
             return View(model);
         }
 

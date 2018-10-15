@@ -218,9 +218,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Products\noimage.png" />
-    <Content Include="Images\Suppliers\Breville.jpg" />
-    <Content Include="Images\Suppliers\LG.jpg" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

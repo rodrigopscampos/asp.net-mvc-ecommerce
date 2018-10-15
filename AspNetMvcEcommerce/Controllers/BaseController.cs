@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp.Controllers
+namespace AspNetMvcEcommerce.Controllers
 {
     public class BaseController : Controller
     {

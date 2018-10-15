@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace ElectricsOnlineWebApp
+namespace AspNetMvcEcommerce
 {
     public class DbStoreContext : DbContext
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp.Models
+namespace AspNetMvcEcommerce.Models
 {
     public class Customer
     {

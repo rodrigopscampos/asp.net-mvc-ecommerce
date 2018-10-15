@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using ElectricsOnlineWebApp.Models;
+using AspNetMvcEcommerce.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp.Areas.Admin.Controllers
+namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
     public class OrderController : BaseController
     {

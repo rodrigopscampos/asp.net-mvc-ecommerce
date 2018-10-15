@@ -6,11 +6,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ElectricsOnlineWebApp.Models;
+using AspNetMvcEcommerce.Models;
 using Microsoft.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace ElectricsOnlineWebApp.Controllers
+namespace AspNetMvcEcommerce.Controllers
 {
     [Authorize]
     public class ManageController : Controller

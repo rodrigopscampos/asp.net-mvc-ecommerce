@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ElectricsOnlineWebApp.Controllers
+namespace AspNetMvcEcommerce.Controllers
 {
     public class CheckoutController : BaseController
     {
@@ -126,7 +126,7 @@ namespace ElectricsOnlineWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Purchase(ElectricsOnlineWebApp.Models.Customer customer)
+        public ActionResult Purchase(AspNetMvcEcommerce.Models.Customer customer)
         {
             ViewBag.States = states;
             ViewBag.Cards = cards;

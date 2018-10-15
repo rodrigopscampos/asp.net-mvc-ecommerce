@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ElectricsOnlineWebApp
+namespace AspNetMvcEcommerce
 {
 
     public partial class Product
