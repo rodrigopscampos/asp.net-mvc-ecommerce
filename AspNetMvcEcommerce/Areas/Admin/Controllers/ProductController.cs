@@ -8,12 +8,18 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
     public class ProductController : BaseController
     {
-        public ProductController()
+        static ProductController()
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Produto, Models.Product>();
-                cfg.CreateMap<Models.Product, Produto>();
-            });
+            try
+            {
+                Mapper.Initialize(cfg => {
+                    cfg.CreateMap<Produto, Models.Product>();
+                    cfg.CreateMap<Models.Product, Produto>();
+                });
+            }
+            catch (Exception)
+            {
+            }
         }
         // GET: Admin/Product
         public ActionResult Index()

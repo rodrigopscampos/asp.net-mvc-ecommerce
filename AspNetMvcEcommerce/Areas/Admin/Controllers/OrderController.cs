@@ -8,11 +8,22 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
     public class OrderController : BaseController
     {
+        static OrderController()
+        {
+            try
+            {
+                Mapper.Initialize(cfg => {
+                    cfg.CreateMap<Ordem, OrderModel>();
+                });
+            }
+            catch (System.Exception)
+            {
+            }
+        }
+
         public OrderController()
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Ordem, OrderModel>();
-            });
+           
         }
 
         // GET: Admin/Order

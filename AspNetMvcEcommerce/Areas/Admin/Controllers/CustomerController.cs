@@ -9,10 +9,18 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
     public class CustomerController : BaseController
     {
-        public CustomerController(){
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<Cliente, AspNetMvcEcommerce.Models.Cliente>();
-            });
+        static CustomerController(){
+
+            try
+            {
+                Mapper.Initialize(cfg => {
+                    cfg.CreateMap<Cliente, AspNetMvcEcommerce.Models.Cliente>();
+                });
+            }
+            catch
+            {
+
+            }
         }
 
         // GET: Admin/Customer

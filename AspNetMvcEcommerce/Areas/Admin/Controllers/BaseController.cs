@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class BaseController : Controller
     {
         protected AspNetMvcEcommerceContext _ctx = new AspNetMvcEcommerceContext();

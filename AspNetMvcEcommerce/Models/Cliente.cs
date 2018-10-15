@@ -7,6 +7,8 @@ namespace AspNetMvcEcommerce.Models
 {
     public class Cliente
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Nome é requerido")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }

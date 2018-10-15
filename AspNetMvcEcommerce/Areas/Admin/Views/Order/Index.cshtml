@@ -36,19 +36,19 @@ else
     {
         <tr>
             <td>
-                @String.Format("{0:dd/MM/yyy}", item.OrderDate)
+                @String.Format("{0:dd/MM/yyy}", item.DataDeCriacao)
             </td>
             <td>
-                @String.Format("{0:dd/MM/yyy}", item.DeliveryDate)
+                @String.Format("{0:dd/MM/yyy}", item.DataDeEntrega)
             </td>
             <td>
-                @String.Format("{0} {1}", item.Customer.FName, item.Customer.LName)
+                @String.Format("{0}", item.Cliente.Nome)
             </td>
             <td>
                 @String.Format("{0:c}", item.TotalPayment)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+                @Html.ActionLink("Details", "Details", new { id = item.ItensId })
             </td>
         </tr>
     }
