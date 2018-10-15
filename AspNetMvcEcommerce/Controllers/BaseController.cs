@@ -27,7 +27,7 @@ namespace AspNetMvcEcommerce.Controllers
         {
             get
             {
-                return Cart.Sum(c => c.Quantity * c.UnitPrice);
+                return Cart.Sum(c => c.Quantidade * c.PrecoUnitario);
             }
         }
     }

@@ -7,10 +7,10 @@
 
 @section scripts {
     <script>
-        function UpdateTotalPrice() {
+        function atualizaPrecoTotal() {
             $.ajax({
                 type: 'GET',
-                url: "Checkout/UpdateTotal",
+                url: "Checkout/AtualizaTotal",
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
                     if (msg.d == "$0.00") {
@@ -31,7 +31,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "Checkout/QuanityChange",
+                url: "Checkout/AtualizaQuantidade",
                 data:"{ 'type': " + type +", 'pId': " + pid + "}",
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
@@ -78,7 +78,7 @@ else
         <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", ViewBag.CartTotalPrice)</td></tr>
     </table>
     <div class="button">
-        @Html.ActionLink("Limpar", "Clear", "Checkout", null, new { @class = "btn btn-default" })
-        @Html.ActionLink("Continuar", "Purchase","Checkout", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Limpar", "Limpar", "Checkout", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Continuar", "Continuar", "Checkout", null, new { @class = "btn btn-info" })
     </div>
 }

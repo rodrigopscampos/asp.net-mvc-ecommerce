@@ -38,7 +38,7 @@ namespace AspNetMvcEcommerce.Controllers
             return View();
         }
         
-        public JsonResult QuanityChange(int type, int pId)
+        public JsonResult AtualizaQuantidade(int type, int pId)
         {
             AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
 
@@ -55,29 +55,29 @@ namespace AspNetMvcEcommerce.Controllers
             switch (type)
             {
                 case 0:
-                    product.Quantity--;
+                    product.Quantidade--;
                     actualProduct.UnitsInStock++;
                     break;
                 case 1:
-                    product.Quantity++;
+                    product.Quantidade++;
                     actualProduct.UnitsInStock--;
                     break;
                 case -1:
-                    actualProduct.UnitsInStock += product.Quantity;
-                    product.Quantity = 0;
+                    actualProduct.UnitsInStock += product.Quantidade;
+                    product.Quantidade = 0;
                     break;
                 default:
                     return Json(new { d = "0" });
             }
 
-            if (product.Quantity == 0)
+            if (product.Quantidade == 0)
             {
                 context.ShoppingCartDatas.Remove(product);
                 quantity = 0;
             }
             else
             {
-                quantity = product.Quantity;
+                quantity = product.Quantidade;
             }
 
             context.SaveChanges();
@@ -85,28 +85,28 @@ namespace AspNetMvcEcommerce.Controllers
         }
         
         [HttpGet]
-        public JsonResult UpdateTotal()
+        public JsonResult AtualizaTotal()
         {
             AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
             decimal total;
             try
             {
 
-                total = context.ShoppingCartDatas.Select(p => p.UnitPrice * p.Quantity).Sum();
+                total = context.ShoppingCartDatas.Select(p => p.PrecoUnitario * p.Quantidade).Sum();
             }
             catch (Exception) { total = 0; }
 
             return Json(new { d = String.Format("{0:c}", total) }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Clear()
+        public ActionResult Limpar()
         {
             try
             {
                 List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
                 carts.ForEach(a => {
                     Produto product = _ctx.Produtos.FirstOrDefault(p => p.Id == a.Id);
-                    product.UnitsInStock += a.Quantity;
+                    product.UnitsInStock += a.Quantidade;
                 });
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
                 _ctx.SaveChanges();
@@ -115,7 +115,7 @@ namespace AspNetMvcEcommerce.Controllers
             return RedirectToAction("Index", "Home", null);
         }
 
-        public ActionResult Purchase()
+        public ActionResult Continuar()
         {
             ViewBag.States = states;
             ViewBag.Cards = cards;
@@ -125,7 +125,7 @@ namespace AspNetMvcEcommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Purchase(AspNetMvcEcommerce.Models.Cliente customer)
+        public ActionResult Continuar(AspNetMvcEcommerce.Models.Cliente customer)
         {
             ViewBag.States = states;
             ViewBag.Cards = cards;
@@ -166,10 +166,10 @@ namespace AspNetMvcEcommerce.Controllers
                     {
                         _ctx.IrdemItens.Add(new OrdemItem
                         {
-                            OrderID = o.ItensId,
+                            OrdemId = o.ItensId,
                             Id = i.Id,
-                            Qty = i.Quantity,
-                            TotalSale = i.Quantity * i.UnitPrice
+                            Quantidade = i.Quantidade,
+                            ValorTotal = i.Quantidade * i.PrecoUnitario
                         });
                         _ctx.ShoppingCartDatas.Remove(i);
                     }

@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
 
-        public int OrderID { get; set; }
-        public int Qty { get; set; }
-        public decimal TotalSale { get; set; }
+        public int OrdemId { get; set; }
+        public int Quantidade { get; set; }
+        public decimal ValorTotal { get; set; }
     }
 }

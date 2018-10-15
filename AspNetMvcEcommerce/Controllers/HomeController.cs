@@ -6,73 +6,68 @@ namespace AspNetMvcEcommerce.Controllers
 {
     public class HomeController : BaseController
     {
-        
         public ActionResult Index()
         {
+            var produtos = _ctx.Produtos.ToList();
+            ViewBag.Produtos = produtos;
 
-            List<Produto> products = _ctx.Produtos.ToList<Produto>();
-            ViewBag.Products = products;
             return View();
         }
 
-        public ActionResult Category(string catName)
+        public ActionResult Categoria(string catName)
         {
-            List<Produto> products;
+            List<Produto> produtos;
+
             if (catName == "")
             {
-                products = _ctx.Produtos.ToList();
-            } else { 
-                products = _ctx.Produtos.Where(p => p.Category == catName).ToList<Produto>();
+                produtos = _ctx.Produtos.ToList();
             }
-            ViewBag.Products = products;
+            else
+            { 
+                produtos = _ctx.Produtos.Where(p => p.Categoria == catName).ToList();
+            }
+
+            ViewBag.Products = produtos;
+
             return View("Index");
         }
         
-        public ActionResult AddToCart(int id)
+        public ActionResult AdicionaAoCarrinho(int id)
         {
-            addToCart(id);
-            return RedirectToAction("Index");
-        }
+            var produto = _ctx.Produtos.FirstOrDefault(p => p.Id == id);
 
-        private void addToCart(int pId)
-        {
-            // check if product is valid
-            var product = _ctx.Produtos.FirstOrDefault(p => p.Id == pId);
-
-            if (product != null && product.UnitsInStock > 0)
+            if (produto != null)
             {
-                // check if product already existed
-                ShoppingCartData cart = _ctx.ShoppingCartDatas.FirstOrDefault(c => c.Id == pId);
-                if (cart != null)
+                var carrinho = _ctx.ShoppingCartDatas.FirstOrDefault(c => c.Id == id);
+                if (carrinho != null)
                 {
-                    cart.Quantity++;
+                    carrinho.Quantidade++;
                 }
                 else
                 {
-
-                    cart = new ShoppingCartData
+                    carrinho = new ShoppingCartData
                     {
-                        PName = product.PName,
-                        Id = product.Id,
-                        UnitPrice = product.UnitPrice,
-                        Quantity = 1
+                        NomeDoProduto = produto.Nome,
+                        Id = produto.Id,
+                        PrecoUnitario = produto.Preco,
+                        Quantidade = 1
                     };
 
-                    _ctx.ShoppingCartDatas.Add(cart);
+                    _ctx.ShoppingCartDatas.Add(carrinho);
                 }
-                product.UnitsInStock--;
+                
                 _ctx.SaveChanges();
             }
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult About()
+        public ActionResult Sobre()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contato()
         {
             return View();
         }
