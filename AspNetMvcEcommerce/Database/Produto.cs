@@ -3,7 +3,7 @@
 namespace AspNetMvcEcommerce
 {
 
-    public partial class Product
+    public partial class Produto
     {
         public int Id { get; set; }
 
@@ -16,6 +16,7 @@ namespace AspNetMvcEcommerce
         public int SID { get; set; }
         public int ROL { get; set; }
 
-        public virtual ICollection<Order_Products> Order_Products { get; set; }
+        //todo: remover
+        public virtual ICollection<OrdemItem> Order_Products { get; set; }
     }
 }

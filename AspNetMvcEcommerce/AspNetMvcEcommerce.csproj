@@ -193,11 +193,11 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Database\Customer.cs" />
+    <Compile Include="Database\Cliente.cs" />
     <Compile Include="Database\DbStoreContext.cs" />
-    <Compile Include="Database\Order.cs" />
-    <Compile Include="Database\Order_Products.cs" />
-    <Compile Include="Database\Product.cs" />
+    <Compile Include="Database\Ordem.cs" />
+    <Compile Include="Database\OrdemItem.cs" />
+    <Compile Include="Database\Produto.cs" />
     <Compile Include="Database\ShoppingCartData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

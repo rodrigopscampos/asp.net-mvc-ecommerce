@@ -11,7 +11,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         public OrderController()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Order, OrderModel>();
+                cfg.CreateMap<Ordem, OrderModel>();
             });
         }
 
@@ -19,7 +19,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var orders = _ctx.Orders;
-            var model = Mapper.Map<IEnumerable<Order>, IEnumerable<OrderModel>>(orders);
+            var model = Mapper.Map<IEnumerable<Ordem>, IEnumerable<OrderModel>>(orders);
             return View(model);
         }
 

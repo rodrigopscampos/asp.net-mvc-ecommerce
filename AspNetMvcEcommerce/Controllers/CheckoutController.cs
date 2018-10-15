@@ -49,7 +49,7 @@ namespace AspNetMvcEcommerce.Controllers
                 return Json(new { d = "0" });
             }
 
-            Product actualProduct = context.Products.FirstOrDefault(p => p.Id == pId);
+            Produto actualProduct = context.Products.FirstOrDefault(p => p.Id == pId);
             int quantity;
             // if type 0, decrease quantity
             // if type 1, increase quanity
@@ -106,7 +106,7 @@ namespace AspNetMvcEcommerce.Controllers
             {
                 List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
                 carts.ForEach(a => {
-                    Product product = _ctx.Products.FirstOrDefault(p => p.Id == a.Id);
+                    Produto product = _ctx.Products.FirstOrDefault(p => p.Id == a.Id);
                     product.UnitsInStock += a.Quantity;
                 });
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
@@ -155,7 +155,7 @@ namespace AspNetMvcEcommerce.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    Customer c = new Customer
+                    Cliente c = new Cliente
                     {
                         FName = customer.FName,
                         LName = customer.LName,
@@ -171,7 +171,7 @@ namespace AspNetMvcEcommerce.Controllers
                         ExpDate = customer.ExpDate
                     };
 
-                    Order o = new Order
+                    Ordem o = new Ordem
                     {
                         OrderDate = DateTime.Now,
                         DeliveryDate = DateTime.Now.AddDays(5),
@@ -183,7 +183,7 @@ namespace AspNetMvcEcommerce.Controllers
 
                     foreach (var i in _ctx.ShoppingCartDatas.ToList<ShoppingCartData>())
                     {
-                        _ctx.Order_Products.Add(new Order_Products
+                        _ctx.Order_Products.Add(new OrdemItem
                         {
                             OrderID = o.Order_ProductsId,
                             Id = i.Id,

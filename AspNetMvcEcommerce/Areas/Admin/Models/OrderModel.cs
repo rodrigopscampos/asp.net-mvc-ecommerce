@@ -2,7 +2,7 @@
 
 namespace AspNetMvcEcommerce.Models
 {
-    public class OrderModel : AspNetMvcEcommerce.Order
+    public class OrderModel : AspNetMvcEcommerce.Ordem
     {
 
         public decimal TotalPayment

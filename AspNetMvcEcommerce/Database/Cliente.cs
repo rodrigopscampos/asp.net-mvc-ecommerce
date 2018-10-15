@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AspNetMvcEcommerce
 {
-    public class Customer
+    public class Cliente
     {
         public int Id { get; set; }
 
@@ -20,6 +20,6 @@ namespace AspNetMvcEcommerce
         public DateTime ExpDate { get; set; }
         public string Email { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Ordem> Orders { get; set; }
     }
 }

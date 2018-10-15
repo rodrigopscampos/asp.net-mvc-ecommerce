@@ -10,19 +10,19 @@ namespace AspNetMvcEcommerce.Controllers
         public ActionResult Index()
         {
 
-            List<Product> products = _ctx.Products.ToList<Product>();
+            List<Produto> products = _ctx.Products.ToList<Produto>();
             ViewBag.Products = products;
             return View();
         }
 
         public ActionResult Category(string catName)
         {
-            List<Product> products;
+            List<Produto> products;
             if (catName == "")
             {
                 products = _ctx.Products.ToList();
             } else { 
-                products = _ctx.Products.Where(p => p.Category == catName).ToList<Product>();
+                products = _ctx.Products.Where(p => p.Category == catName).ToList<Produto>();
             }
             ViewBag.Products = products;
             return View("Index");
@@ -38,6 +38,7 @@ namespace AspNetMvcEcommerce.Controllers
         {
             // check if product is valid
             var product = _ctx.Products.FirstOrDefault(p => p.Id == pId);
+
             if (product != null && product.UnitsInStock > 0)
             {
                 // check if product already existed

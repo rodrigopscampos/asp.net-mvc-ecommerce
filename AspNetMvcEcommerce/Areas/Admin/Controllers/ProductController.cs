@@ -11,22 +11,22 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         public ProductController()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Product, Models.Product>();
-                cfg.CreateMap<Models.Product, Product>();
+                cfg.CreateMap<Produto, Models.Product>();
+                cfg.CreateMap<Models.Product, Produto>();
             });
         }
         // GET: Admin/Product
         public ActionResult Index()
         {
             var products = _ctx.Products;
-            var model = Mapper.Map<IEnumerable<Product>, IEnumerable<Models.Product>>(products);
+            var model = Mapper.Map<IEnumerable<Produto>, IEnumerable<Models.Product>>(products);
             return View(model);
         }
 
         private Models.Product _getProduct(int id)
         {
             var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
-            var model = Mapper.Map<Product, Models.Product>(product);
+            var model = Mapper.Map<Produto, Models.Product>(product);
             return model;
         }
 
@@ -50,7 +50,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             {
 
                 // TODO: Add insert logic here
-                var product = new Product
+                var product = new Produto
                 {
                     PName = model.PName,
                     Brand = model.Brand,
@@ -84,7 +84,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             try
             {
                 // TODO: Add update logic here
-                Product p = _ctx.Products.FirstOrDefault(pr => pr.Id == model.PID);
+                Produto p = _ctx.Products.FirstOrDefault(pr => pr.Id == model.PID);
 
                 p.UnitPrice = model.UnitPrice;
                 p.UnitsInStock = model.UnitsInStock;

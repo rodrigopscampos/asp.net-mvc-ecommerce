@@ -9,10 +9,10 @@ namespace AspNetMvcEcommerce
 
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Order_Products> Order_Products { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Cliente> Customers { get; set; }
+        public virtual DbSet<OrdemItem> Order_Products { get; set; }
+        public virtual DbSet<Ordem> Orders { get; set; }
+        public virtual DbSet<Produto> Products { get; set; }
         public virtual DbSet<ShoppingCartData> ShoppingCartDatas { get; set; }
     }
 }

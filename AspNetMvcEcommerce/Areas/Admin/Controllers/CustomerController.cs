@@ -11,7 +11,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
     {
         public CustomerController(){
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Customer, AspNetMvcEcommerce.Models.Customer>();
+                cfg.CreateMap<Cliente, AspNetMvcEcommerce.Models.Customer>();
             });
         }
 
@@ -19,7 +19,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var customers = _ctx.Customers.ToList();
-            var model = Mapper.Map<IEnumerable<Customer>, IEnumerable<AspNetMvcEcommerce.Models.Customer>>(customers);
+            var model = Mapper.Map<IEnumerable<Cliente>, IEnumerable<AspNetMvcEcommerce.Models.Customer>>(customers);
             return View("Index", model);
         }
 
@@ -27,7 +27,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             var customer = _ctx.Customers.FirstOrDefault(c => c.Id == id);
-            var model = Mapper.Map<Customer, AspNetMvcEcommerce.Models.Customer>(customer);
+            var model = Mapper.Map<Cliente, AspNetMvcEcommerce.Models.Customer>(customer);
             return View(model);
         }
 
