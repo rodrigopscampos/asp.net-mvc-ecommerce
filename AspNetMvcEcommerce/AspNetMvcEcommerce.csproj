@@ -260,8 +260,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\Checkout\Purchase.cshtml" />
-    <Content Include="Views\Checkout\PurchasedSuccess.cshtml" />
+    <Content Include="Views\Checkout\Compra.cshtml" />
+    <Content Include="Views\Checkout\CompraRealizadaComSucesso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,25 +50,6 @@ namespace AspNetMvcEcommerce.Controllers
 
             Produto actualProduct = context.Produtos.FirstOrDefault(p => p.Id == pId);
             int quantity;
-            // if type 0, decrease quantity
-            // if type 1, increase quanity
-            switch (type)
-            {
-                case 0:
-                    product.Quantidade--;
-                    actualProduct.UnitsInStock++;
-                    break;
-                case 1:
-                    product.Quantidade++;
-                    actualProduct.UnitsInStock--;
-                    break;
-                case -1:
-                    actualProduct.UnitsInStock += product.Quantidade;
-                    product.Quantidade = 0;
-                    break;
-                default:
-                    return Json(new { d = "0" });
-            }
 
             if (product.Quantidade == 0)
             {
@@ -104,10 +85,6 @@ namespace AspNetMvcEcommerce.Controllers
             try
             {
                 List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
-                carts.ForEach(a => {
-                    Produto product = _ctx.Produtos.FirstOrDefault(p => p.Id == a.Id);
-                    product.UnitsInStock += a.Quantidade;
-                });
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
                 _ctx.SaveChanges();
             }
@@ -125,7 +102,7 @@ namespace AspNetMvcEcommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Continuar(AspNetMvcEcommerce.Models.Cliente customer)
+        public ActionResult Continuar(Models.Cliente customer)
         {
             ViewBag.States = states;
             ViewBag.Cards = cards;
@@ -134,7 +111,7 @@ namespace AspNetMvcEcommerce.Controllers
             {
                 if (customer.CcValidade <= DateTime.Now)
                 {
-                    ModelState.AddModelError("", "Credit card has already expired");
+                    ModelState.AddModelError("", "Cartão de crédito expirado");
                 }
 
                 if (ModelState.IsValid)
@@ -176,7 +153,7 @@ namespace AspNetMvcEcommerce.Controllers
 
                     _ctx.SaveChanges();
 
-                    return RedirectToAction("PurchasedSuccess");
+                    return RedirectToAction("CompraRealizadaComSucesso");
                 }
             }
 
@@ -191,7 +168,7 @@ namespace AspNetMvcEcommerce.Controllers
             return View(customer);
         }
 
-        public ActionResult PurchasedSuccess()
+        public ActionResult CompraRealizadaComSucesso()
         {
             return View();
         }
