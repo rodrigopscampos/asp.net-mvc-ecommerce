@@ -14,8 +14,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElectricsOnlineWebApp</RootNamespace>
-    <AssemblyName>ElectricsOnlineWebApp</AssemblyName>
+    <RootNamespace>AspNetMvcEcommerce</RootNamespace>
+    <AssemblyName>AspNetMvcEcommerce</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -188,6 +188,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Database\Categoria.cs" />
     <Compile Include="Database\Cliente.cs" />
     <Compile Include="Database\AspNetMvcEcommerceContext.cs" />
     <Compile Include="Database\Ordem.cs" />
@@ -216,6 +217,10 @@
     <Compile Include="Migrations\201810170046035_c.cs" />
     <Compile Include="Migrations\201810170046035_c.Designer.cs">
       <DependentUpon>201810170046035_c.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810170054426_categoria.cs" />
+    <Compile Include="Migrations\201810170054426_categoria.Designer.cs">
+      <DependentUpon>201810170054426_categoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -322,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810170046035_c.resx">
       <DependentUpon>201810170046035_c.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810170054426_categoria.resx">
+      <DependentUpon>201810170054426_categoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

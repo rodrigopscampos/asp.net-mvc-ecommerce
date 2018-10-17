@@ -10,24 +10,26 @@ namespace AspNetMvcEcommerce.Controllers
         {
             var produtos = _ctx.Produtos.ToList();
             ViewBag.Produtos = produtos;
+            ViewBag.Categorias = _ctx.Categorias.ToList();
 
             return View();
         }
 
-        public ActionResult Categoria(string catName)
+        public ActionResult Categoria(string categoria)
         {
             List<Produto> produtos;
 
-            if (catName == "")
+            if (categoria == "")
             {
                 produtos = _ctx.Produtos.ToList();
             }
             else
             { 
-                produtos = _ctx.Produtos.Where(p => p.Categoria == catName).ToList();
+                produtos = _ctx.Produtos.Where(p => p.Categoria.Descricao == categoria).ToList();
             }
 
             ViewBag.Produtos = produtos;
+            ViewBag.CategoriaSelectionada = categoria;
 
             return View("Index");
         }
