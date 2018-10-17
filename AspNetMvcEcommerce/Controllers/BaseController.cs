@@ -10,7 +10,7 @@ namespace AspNetMvcEcommerce.Controllers
 
         public BaseController()
         {
-            ViewBag.CartTotalPrice = PrecoTotalDoCarrinho;
+            ViewBag.PrecoTotalDoCarrinho = PrecoTotalDoCarrinho;
             ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
             ViewBag.CartUnits = CarrinhoDeCompras.Count;
         }
