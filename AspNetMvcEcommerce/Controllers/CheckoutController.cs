@@ -34,7 +34,7 @@ namespace AspNetMvcEcommerce.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
-            ViewBag.Cart = _ctx.ShoppingCartDatas.ToList<ShoppingCartData>();
+            ViewBag.CarrinhoDeCompras = _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>();
             return View();
         }
         
@@ -42,7 +42,7 @@ namespace AspNetMvcEcommerce.Controllers
         {
             AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
 
-            ShoppingCartData product = context.ShoppingCartDatas.FirstOrDefault(p => p.Id == pId);
+            CarrinhoDeComprasItem product = context.ShoppingCartDatas.FirstOrDefault(p => p.Id == pId);
             if (product == null)
             {
                 return Json(new { d = "0" });
@@ -84,7 +84,7 @@ namespace AspNetMvcEcommerce.Controllers
         {
             try
             {
-                List<ShoppingCartData> carts = _ctx.ShoppingCartDatas.ToList();
+                List<CarrinhoDeComprasItem> carts = _ctx.ShoppingCartDatas.ToList();
                 _ctx.ShoppingCartDatas.RemoveRange(carts);
                 _ctx.SaveChanges();
             }
@@ -139,7 +139,7 @@ namespace AspNetMvcEcommerce.Controllers
                     _ctx.Clientes.Add(c);
                     _ctx.Ordens.Add(o);
 
-                    foreach (var i in _ctx.ShoppingCartDatas.ToList<ShoppingCartData>())
+                    foreach (var i in _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>())
                     {
                         _ctx.IrdemItens.Add(new OrdemItem
                         {

@@ -52,7 +52,7 @@
 
 <h2>Carrinho de compras</h2>
 
-@if (ViewBag.Cart.Count == 0)
+@if (ViewBag.CarrinhoDeCompras.Count == 0)
 {
     <br />
     <div id="EmptyDataMsg" class="alert alert-info">
@@ -62,7 +62,7 @@
 else
 {
     <table class="cart-page">
-        @foreach (var item in ViewBag.Cart)
+        @foreach (var item in ViewBag.CarrinhoDeCompras)
         {
             <tr>
                 <td><span class="p-name">@item.PName</span> </td>
@@ -75,7 +75,7 @@ else
                 </td>
             </tr>
         }
-        <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", ViewBag.CartTotalPrice)</td></tr>
+        <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", ViewBag.PrecoTotalDoCarrinho)</td></tr>
     </table>
     <div class="button">
         @Html.ActionLink("Limpar", "Limpar", "Checkout", null, new { @class = "btn btn-default" })

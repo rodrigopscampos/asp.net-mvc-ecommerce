@@ -10,12 +10,12 @@ namespace AspNetMvcEcommerce.Controllers
 
         public BaseController()
         {
-            ViewBag.CartTotalPrice = CartTotalPrice;
-            ViewBag.Cart = Cart;
-            ViewBag.CartUnits = Cart.Count;
+            ViewBag.CartTotalPrice = PrecoTotalDoCarrinho;
+            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+            ViewBag.CartUnits = CarrinhoDeCompras.Count;
         }
 
-        private List<ShoppingCartData> Cart
+        private List<CarrinhoDeComprasItem> CarrinhoDeCompras
         {
             get
             {
@@ -23,11 +23,11 @@ namespace AspNetMvcEcommerce.Controllers
             }
         }
 
-        private decimal CartTotalPrice
+        private decimal PrecoTotalDoCarrinho
         {
             get
             {
-                return Cart.Sum(c => c.Quantidade * c.PrecoUnitario);
+                return CarrinhoDeCompras.Sum(c => c.Quantidade * c.PrecoUnitario);
             }
         }
     }

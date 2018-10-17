@@ -32,11 +32,11 @@
         <a class="basket">
             <span>Carrinho: </span> @ViewBag.CartUnits
             <table>
-                @foreach (var c in ViewBag.Cart) {
+                @foreach (var c in ViewBag.CarrinhoDeCompras) {
                     <tr><td>@c.Quantity x @String.Format("{0:c}", c.UnitPrice)</td><td>@c.PName</td></tr>
                 }
                 <tr>
-                    <td>Total: @String.Format("{0:c}", ViewBag.CartTotalPrice)</td>
+                    <td>Total: @String.Format("{0:c}", ViewBag.PrecoTotalDoCarrinho)</td>
                     <td>@Html.ActionLink("Finalizar", "Index", "Checkout")</td>
                 </tr>
         </table>

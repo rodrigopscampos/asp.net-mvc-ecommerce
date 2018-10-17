@@ -1,6 +1,6 @@
 ﻿namespace AspNetMvcEcommerce
 {
-    public class ShoppingCartData
+    public class CarrinhoDeComprasItem
     {
         public int Id { get; set; }
         

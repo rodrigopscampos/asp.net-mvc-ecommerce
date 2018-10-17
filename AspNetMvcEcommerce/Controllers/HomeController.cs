@@ -45,7 +45,7 @@ namespace AspNetMvcEcommerce.Controllers
                 }
                 else
                 {
-                    carrinho = new ShoppingCartData
+                    carrinho = new CarrinhoDeComprasItem
                     {
                         NomeDoProduto = produto.Nome,
                         Id = produto.Id,

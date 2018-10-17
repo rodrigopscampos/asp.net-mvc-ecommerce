@@ -193,7 +193,7 @@
     <Compile Include="Database\Ordem.cs" />
     <Compile Include="Database\OrdemItem.cs" />
     <Compile Include="Database\Produto.cs" />
-    <Compile Include="Database\ShoppingCartData.cs" />
+    <Compile Include="Database\CarrinhoDeComprasItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

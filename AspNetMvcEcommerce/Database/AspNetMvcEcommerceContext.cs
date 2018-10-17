@@ -13,6 +13,6 @@ namespace AspNetMvcEcommerce
         public virtual DbSet<OrdemItem> IrdemItens { get; set; }
         public virtual DbSet<Ordem> Ordens { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
-        public virtual DbSet<ShoppingCartData> ShoppingCartDatas { get; set; }
+        public virtual DbSet<CarrinhoDeComprasItem> ShoppingCartDatas { get; set; }
     }
 }
