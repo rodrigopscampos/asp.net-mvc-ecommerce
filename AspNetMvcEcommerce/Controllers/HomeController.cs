@@ -27,7 +27,7 @@ namespace AspNetMvcEcommerce.Controllers
                 produtos = _ctx.Produtos.Where(p => p.Categoria == catName).ToList();
             }
 
-            ViewBag.Products = produtos;
+            ViewBag.Produtos = produtos;
 
             return View("Index");
         }

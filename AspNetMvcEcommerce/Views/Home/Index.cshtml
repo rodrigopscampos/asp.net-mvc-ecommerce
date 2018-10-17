@@ -4,9 +4,9 @@
 
 <h2>Produtos</h2>
 
-<form action="/Home/Category" method="get" id="category" class="option">
+<form action="/Home/Categoria" method="get" id="categoria" class="option">
     <span>Categorias</span>
-    <select id="catName" class="form-control" name="catName" onchange="$('#category').submit()">
+    <select id="catName" class="form-control" name="catName" onchange="$('#categoria').submit()">
             <option value="">Tudo</option>
             <option value="Washing Machines">Washing Machines</option>
             <option value="Kettles">Kettles</option>
@@ -27,10 +27,10 @@ else
         @foreach (var item in ViewBag.Produtos)
         {
             <div class="list-item">
-                <span class="p-cart">@item.Category</span>
-                <span class="p-brand">@item.Brand</span>
-                <span class="p-name">@item.PName</span>
-                <span class="p-description">@item.Description</span>
+                <span class="p-cart">@item.Categoria</span>
+                <span class="p-brand">@item.Marca</span>
+                <span class="p-name">@item.Nome</span>
+                <span class="p-description">@item.Descricao</span>
 
                 <div class="add-to-cart">
                     @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.PID }, null)
