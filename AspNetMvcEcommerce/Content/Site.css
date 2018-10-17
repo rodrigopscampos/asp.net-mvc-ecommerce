@@ -27,13 +27,18 @@ textarea {
     background: #2dbb9b;
     font-weight: bold;
 }
+
 .navbar-theme a {
     color: #fff
 }
+
 .nav > li > a:hover, .nav > li > a:focus {
     background: rgba(255, 255, 255, .2);
 }
-.navbar-brand { font-size: 1.5em }
+
+.navbar-brand {
+    font-size: 1.5em
+}
 
 /* Home page */
 .basket {
@@ -47,13 +52,18 @@ textarea {
     letter-spacing: normal;
     position: relative;
 }
-.basket:hover { background: #2dbb9b }
+
+.basket:hover {
+    background: #2dbb9b
+}
+
 .basket span {
     margin-right: 5px;
     margin-left: -20px;
     padding: 20px;
     text-transform: uppercase;
-} 
+}
+
 .basket table {
     position: absolute;
     margin-top: 20px;
@@ -66,12 +76,25 @@ textarea {
     letter-spacing: normal;
     text-transform: none;
 }
-.basket:hover table { display: table }
-.basket table tr { transition: .3s; -webkit-transition: .3s; padding: 20px }
-.basket table tr:hover { opacity: .5 }
+
+.basket:hover table {
+    display: table
+}
+
+.basket table tr {
+    transition: .3s;
+    -webkit-transition: .3s;
+    padding: 20px
+}
+
+.basket table tr:hover {
+    opacity: .5
+}
+
 .basket table tr:last-child:hover {
     opacity: 1
 }
+
 .basket table tr:last-child a {
     padding: 10px 20px;
     float: right;
@@ -81,33 +104,53 @@ textarea {
     font-weight: bold;
     letter-spacing: normal;
     -webkit-transition: .3s;
-} .basket table tr:last-child a:hover { opacity: 1; background: #2dbb9b; color: #fff }
+}
+
+.basket table tr:last-child a:hover {
+    opacity: 1;
+    background: #2dbb9b;
+    color: #fff
+}
+
 .basket table td {
     padding: 10px 20px;
 }
 
-/* Product page */
-.list-view {
+/*.list-view {
     display: flex;
     flex-wrap: wrap
-}
+}*/
 .list-item {
-    width: calc(100% / 3 - 34px);
     margin: 20px 25px;
-    opacity: .8;
-    transition: .3s;
-    -webkit-transition: .3s;
-    padding: 20px;
+    padding: 15px 10px;
     border: 1px solid #2dbb9b;
 }
+
 .list-item:hover {
     opacity: 1
 }
-.list-item:nth-child(3n+1) {
-    margin-left: 0;
+
+
+.list-item .add-carinho {
+    padding-top: 10px;
 }
-.list-item:nth-child(3n) {
-    margin-right: 0
+
+
+.list-item .add-carinho a {
+    border: 1px solid #2dbb9b;
+    padding: 10px;
+    font-weight: bold;
+    font-size: .8em;
+    margin: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #2dbb9b;
+}
+
+.list-item .add-carinho a:hover {
+    color: #fff;
+    background: #2dbb9b;
 }
 
 .list-item .p-cat {
@@ -131,32 +174,9 @@ textarea {
     margin: 5px 0;
 }
 .list-item .p-description {
-    /*font-size: 0.9em;*/
     color: #808080;
     margin-bottom: 10px;
     display: block;
-}
-.list-item .add-to-cart {
-    display: inline-block;
-    vertical-align: bottom;
-    margin-top: 10px;
-}
-
-
-.list-item .add-to-cart a {
-    border: 1px solid #2dbb9b;
-    padding: 10px;
-    font-weight: bold;
-    font-size: .8em;
-    margin: 0;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #2dbb9b;
-}
-.list-item .add-to-cart a:hover {
-    color: #fff;
-    background: #2dbb9b;
 }
 .list-item .p-price {
     color: #fff;
@@ -172,31 +192,29 @@ textarea {
     vertical-align: bottom;
 }
 
-
-.suppliers .address {
-    font-weight: bold;
-    font-size: .9em;
-}
-.suppliers .phone, .suppliers .email {
-    width: 100%;
-}
-
 .cart-page {
     width: 100%;
     margin: 20px 0;
     font-weight: bold;
     color: #2f2f2f;
 }
-.cart-page th { transition: .3s; -webkit-transition: .3s }
+
+.cart-page th {
+    transition: .3s;
+    -webkit-transition: .3s
+}
+
 .cart-page th:hover {
     background: rgba(45, 187, 155, 0.5);
 }
+
 .cart-page, .cart-page th, .cart-page td {
     border: 1px solid #2dbb9b;
     border-collapse: collapse;
     text-align: center;
     padding: 10px;
 }
+
 .cart-page .quantity {
     vertical-align: middle;
     background: #2dbb9b;
@@ -208,6 +226,7 @@ textarea {
     border-radius: 15px;
     margin: 0 10px;
 }
+
 .cart-page .remove {
     font-size: .7em;
     text-transform: uppercase;
@@ -218,8 +237,8 @@ textarea {
     -webkit-transition: .3s;
     border-radius: 15px;
 }
+
 .cart-page .remove:hover {
     background: #ff6a00;
     color: #fff;
 }
-

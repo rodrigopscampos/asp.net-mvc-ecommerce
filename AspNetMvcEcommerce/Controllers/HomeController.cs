@@ -15,21 +15,22 @@ namespace AspNetMvcEcommerce.Controllers
             return View();
         }
 
-        public ActionResult Categoria(string categoria)
+        public ActionResult Categoria(string catName)
         {
             List<Produto> produtos;
 
-            if (categoria == "")
+            if (catName == "")
             {
                 produtos = _ctx.Produtos.ToList();
             }
             else
             { 
-                produtos = _ctx.Produtos.Where(p => p.Categoria.Descricao == categoria).ToList();
+                produtos = _ctx.Produtos.Where(p => p.Categoria.Descricao == catName).ToList();
             }
 
+            ViewBag.Categorias = _ctx.Categorias.ToList();
             ViewBag.Produtos = produtos;
-            ViewBag.CategoriaSelectionada = categoria;
+            ViewBag.CategoriaSelectionada = catName;
 
             return View("Index");
         }

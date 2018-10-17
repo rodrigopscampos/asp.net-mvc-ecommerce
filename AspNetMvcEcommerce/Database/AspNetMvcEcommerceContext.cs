@@ -6,7 +6,6 @@ namespace AspNetMvcEcommerce
     {
         public AspNetMvcEcommerceContext()
         {
-
         }
 
         public virtual DbSet<Cliente> Clientes { get; set; }
@@ -15,5 +14,7 @@ namespace AspNetMvcEcommerce
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<CarrinhoDeComprasItem> ShoppingCartDatas { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
+
+
     }
 }

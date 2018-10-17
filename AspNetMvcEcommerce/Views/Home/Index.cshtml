@@ -6,12 +6,13 @@
 
 <form action="/Home/Categoria" method="get" id="categoria" class="option">
     <span>Categorias</span>
-    <select id="catNome" class="form-control" onchange="$('#categoria').submit()">
+    
+    <select id="catNome"  name="catName" class="form-control" onchange="$('#categoria').submit()">
         <option value="">Tudo</option>
 
         @foreach (var item in ViewBag.Categorias)
         {
-            if (ViewBag.CategoriaSelectionada != null && ViewBag.CategoriaSelectionada)
+            if (ViewBag.CategoriaSelectionada == item.Descricao)
             {
                 <option selected value="@item.Descricao">@item.Descricao</option>
             }
@@ -20,33 +21,35 @@
                 <option value="@item.Descricao">@item.Descricao</option>
             }
         }
-        
-        </select>
+
+    </select>
 </form>
 
 @if (ViewBag.Produtos.Count == 0)
 {
-    <br/>
-    <div id="EmptyDataMsg" class="alert alert-info">
+    <br />
+    <div class="alert alert-info">
         <strong>Bem-vindo!</strong> Nosso carinho está vazio
     </div>
 }
 else
 {
-    <div class="list-view">
-        @foreach (var item in ViewBag.Produtos)
-        {
-            <div class="list-item">
-                <span class="p-cart">@item.Categoria</span>
-                <span class="p-brand">@item.Marca</span>
-                <span class="p-name">@item.Nome</span>
-                <span class="p-description">@item.Descricao</span>
 
-                <div class="add-to-cart">
-                    @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.PID }, null)
-                    <span class="p-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.PrecoUnitario)</span>
-                </div>
-        </div>
-        }
+    <div class="container-fluid">
+      <div class="row">
+          @foreach (var item in ViewBag.Produtos)
+          {
+              <div class="col list-item">
+                  <span class="p-cart">@item.Categoria.Descricao</span>
+                  <span class="p-name">@item.Nome</span>
+                  <span class="p-description">@item.Descricao</span>
+
+                  <div class="add-carinho">
+                      @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id }, null)
+                      <span class="p-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
+                  </div>
+              </div>
+          }
+      </div>
     </div>
 }
