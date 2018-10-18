@@ -1,4 +1,4 @@
-﻿@model AspNetMvcEcommerce.ShoppingCartData
+﻿@model AspNetMvcEcommerce.Models.CestaDeCompra
 
 @{
     ViewBag.Title = "View";
@@ -13,34 +13,35 @@
                 url: "Checkout/AtualizaTotal",
                 contentType: "application/json; charset=utf-8",
                 success: function (msg) {
-                    if (msg.d == "$0.00") {
+                    if (msg.precoTotal == "$0.00") {
                         location.reload();
                         return;
                     }
 
-                    $('#totalPrice').text(msg.d);
+                    $('#totalPrice').text(msg.precoTotal);
                 }
             })
         }
 
-        function Change(el, type, pid) {
+        function Change(el, acao, produtoId) {
             var data = {
-                'type': type,
-                'pId': pid
+                'acao': type,
+                'produtoId': produtoId
             };
 
             $.ajax({
                 type: 'POST',
                 url: "Checkout/AtualizaQuantidade",
-                data:"{ 'type': " + type +", 'pId': " + pid + "}",
+                data: data,
                 contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    if (msg.d == 0) {
+                success: function (retorno) {
+                    if (retorno.quantidadeAtual == 0) {
                         el.parentNode.parentNode.remove();
                     } else {
-                        $(el).siblings('span')[0].innerHTML = msg.d
+                        $(el).siblings('span')[0].innerHTML = msg.quantidadeAtual
                     }
-                    UpdateTotalPrice()
+
+                    atualizaPrecoTotal()
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     debugger;
@@ -52,7 +53,7 @@
 
 <h2>Carrinho de compras</h2>
 
-@if (ViewBag.CarrinhoDeCompras.Count == 0)
+@if (Model.QuantidadeDeProdutos == 0)
 {
     <br />
     <div id="EmptyDataMsg" class="alert alert-info">
@@ -62,16 +63,16 @@
 else
 {
     <table class="cart-page">
-        @foreach (var item in ViewBag.CarrinhoDeCompras)
+        @foreach (var item in Model.Itens.Values)
         {
             <tr>
-                <td><span class="p-name">@item.PName</span> </td>
-                <td><span class="p-name">@String.Format("{0:c}", item.UnitPrice)</span> </td>
+                <td><span class="p-name">@item.NomeDoProduto</span> </td>
+                <td><span class="p-name">@String.Format("{0:c}", item.PrecoUnitario)</span> </td>
                 <td>
-                    <a class="quantity" onclick="Change(this, 1, @item.PID)">+</a>
+                    <a class="quantity" onclick="Change(this, 'incrementa', @item.ProdutoId)">+</a>
                     <span class="p-name">@item.Quantity</span>
-                    <a class="quantity" onclick="Change(this, 0,  @item.PID)">-</a>
-                    <a class="remove" onclick="Change(this, -1,  @item.PID)">Remover</a>
+                    <a class="quantity" onclick="Change(this, 'decrementa',  @item.ProdutoId)">-</a>
+                    <a class="remove" onclick="Change(this, 'remove',  @item.ProdutoId)">Remover</a>
                 </td>
             </tr>
         }

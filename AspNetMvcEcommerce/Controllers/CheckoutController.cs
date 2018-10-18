@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Controllers
@@ -30,63 +29,53 @@ namespace AspNetMvcEcommerce.Controllers
             };
 
         }
-        
+
         // GET: Checkout
         public ActionResult Index()
         {
-            ViewBag.CarrinhoDeCompras = _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>();
+            ViewBag.CarrinhoDeCompras = this.CarrinhoDeCompras;
             return View();
         }
-        
-        public JsonResult AtualizaQuantidade(int type, int pId)
+
+        public JsonResult AtualizaQuantidade(string acao, int id)
         {
-            AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
+            var produto = CarrinhoDeCompras.GetItem(id);
 
-            CarrinhoDeComprasItem product = context.ShoppingCartDatas.FirstOrDefault(p => p.Id == pId);
-            if (product == null)
+            switch (acao)
             {
-                return Json(new { d = "0" });
-            }
+                case "incrementa":
+                    produto.Quantidade++;
+                    CarrinhoDeCompras.SetItem(produto);
+                    return Json(new { quantidadeAtual = produto.Quantidade });
 
-            Produto actualProduct = context.Produtos.FirstOrDefault(p => p.Id == pId);
-            int quantity;
+                case "decrementa":
+                    produto.Quantidade--;
+                    CarrinhoDeCompras.SetItem(produto);
+                    return Json(new { quantidadeAtual = produto.Quantidade });
 
-            if (product.Quantidade == 0)
-            {
-                context.ShoppingCartDatas.Remove(product);
-                quantity = 0;
-            }
-            else
-            {
-                quantity = product.Quantidade;
-            }
+                case "remove":
+                    CarrinhoDeCompras.Remove(id);
+                    return Json(new { quantidadeAtual = 0 });
 
-            context.SaveChanges();
-            return Json(new { d = quantity });
+                default:
+                    throw new Exception();
+            }
         }
-        
+
         [HttpGet]
         public JsonResult AtualizaTotal()
         {
-            AspNetMvcEcommerceContext context = new AspNetMvcEcommerceContext();
-            decimal total;
-            try
-            {
-
-                total = context.ShoppingCartDatas.Select(p => p.PrecoUnitario * p.Quantidade).Sum();
-            }
-            catch (Exception) { total = 0; }
-
-            return Json(new { d = String.Format("{0:c}", total) }, JsonRequestBehavior.AllowGet);
+            return Json(new { d = String.Format("{0:c}", CarrinhoDeCompras.PrecoTotal) }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Limpar()
         {
             try
             {
-                List<CarrinhoDeComprasItem> carts = _ctx.ShoppingCartDatas.ToList();
-                _ctx.ShoppingCartDatas.RemoveRange(carts);
-                _ctx.SaveChanges();
+                this.CarrinhoDeCompras.Limpar();
+                //List<CarrinhoDeComprasItem> carts = _ctx.ShoppingCartDatas.ToList();
+                //_ctx.ShoppingCartDatas.RemoveRange(carts);
+                //_ctx.SaveChanges();
             }
             catch (Exception) { }
             return RedirectToAction("Index", "Home", null);
@@ -139,17 +128,17 @@ namespace AspNetMvcEcommerce.Controllers
                     _ctx.Clientes.Add(c);
                     _ctx.Ordens.Add(o);
 
-                    foreach (var i in _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>())
-                    {
-                        _ctx.IrdemItens.Add(new OrdemItem
-                        {
-                            OrdemId = o.ItensId,
-                            Id = i.Id,
-                            Quantidade = i.Quantidade,
-                            ValorTotal = i.Quantidade * i.PrecoUnitario
-                        });
-                        _ctx.ShoppingCartDatas.Remove(i);
-                    }
+                    //foreach (var i in _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>())
+                    //{
+                    //    _ctx.IrdemItens.Add(new OrdemItem
+                    //    {
+                    //        OrdemId = o.ItensId,
+                    //        Id = i.Id,
+                    //        Quantidade = i.Quantidade,
+                    //        ValorTotal = i.Quantidade * i.PrecoUnitario
+                    //    });
+                    //    _ctx.ShoppingCartDatas.Remove(i);
+                    //}
 
                     _ctx.SaveChanges();
 

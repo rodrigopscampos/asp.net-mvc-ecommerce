@@ -11,6 +11,7 @@ namespace AspNetMvcEcommerce.Controllers
             var produtos = _ctx.Produtos.ToList();
             ViewBag.Produtos = produtos;
             ViewBag.Categorias = _ctx.Categorias.ToList();
+            ViewBag.CarrinhoDeCompras = this.CarrinhoDeCompras;
 
             return View();
         }
@@ -38,29 +39,7 @@ namespace AspNetMvcEcommerce.Controllers
         public ActionResult AdicionaAoCarrinho(int id)
         {
             var produto = _ctx.Produtos.FirstOrDefault(p => p.Id == id);
-
-            if (produto != null)
-            {
-                var carrinho = _ctx.ShoppingCartDatas.FirstOrDefault(c => c.Id == id);
-                if (carrinho != null)
-                {
-                    carrinho.Quantidade++;
-                }
-                else
-                {
-                    carrinho = new CarrinhoDeComprasItem
-                    {
-                        NomeDoProduto = produto.Nome,
-                        Id = produto.Id,
-                        PrecoUnitario = produto.Preco,
-                        Quantidade = 1
-                    };
-
-                    _ctx.ShoppingCartDatas.Add(carrinho);
-                }
-                
-                _ctx.SaveChanges();
-            }
+            this.CarrinhoDeCompras.AdicionaProduto(produto);
 
             return RedirectToAction("Index");
         }

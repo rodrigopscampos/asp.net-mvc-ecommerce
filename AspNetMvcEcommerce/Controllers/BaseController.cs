@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using AspNetMvcEcommerce.Models;
 using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Controllers
@@ -8,26 +7,14 @@ namespace AspNetMvcEcommerce.Controllers
     {
         protected AspNetMvcEcommerceContext _ctx = new AspNetMvcEcommerceContext();
 
-        public BaseController()
-        {
-            ViewBag.PrecoTotalDoCarrinho = PrecoTotalDoCarrinho;
-            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
-            ViewBag.CartUnits = CarrinhoDeCompras.Count;
-        }
-
-        private List<CarrinhoDeComprasItem> CarrinhoDeCompras
+        protected CestaDeCompra CarrinhoDeCompras
         {
             get
             {
-                return _ctx.ShoppingCartDatas.ToList();
-            }
-        }
+                if (Session["cesta"] == null)
+                    Session.Add("cesta", new CestaDeCompra());
 
-        private decimal PrecoTotalDoCarrinho
-        {
-            get
-            {
-                return CarrinhoDeCompras.Sum(c => c.Quantidade * c.PrecoUnitario);
+                return (CestaDeCompra)Session["cesta"];
             }
         }
     }
