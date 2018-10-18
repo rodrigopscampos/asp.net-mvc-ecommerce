@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using AspNetMvcEcommerce.Models;
+using Identity.Models;
 
-namespace AspNetMvcEcommerce
+namespace Identity
 {
     public class EmailService : IIdentityMessageService
     {
@@ -53,11 +53,11 @@ namespace AspNetMvcEcommerce
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 0,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
+                RequiredLength = 6,
+                RequireNonLetterOrDigit = true,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireUppercase = true,
             };
 
             // Configure user lockout defaults
@@ -84,26 +84,6 @@ namespace AspNetMvcEcommerce
                 manager.UserTokenProvider = 
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
-            return manager;
-        }
-
-        internal void AddToRolesAsync(string id, object selectedRoles)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
-    {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
-        : base(roleStore) { }
-
-        public static ApplicationRoleManager Create(
-            IdentityFactoryOptions<ApplicationRoleManager> options,
-            IOwinContext context)
-        {
-            var manager = new ApplicationRoleManager(
-                new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
             return manager;
         }
     }

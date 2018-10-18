@@ -30,20 +30,34 @@
     </div>
     <div class="container body-content">
         <a class="basket">
-            <span>Carrinho: </span> @ViewBag.CarrinhoDeCompras.QuantidadeDeItens
+            <span>Carrinho: </span>
+            @if (ViewBag.CarrinhoDeCompras != null)
+            { @ViewBag.CarrinhoDeCompras.QuantidadeDeItens}
+            else { @String.Format("{0}", 0) }
             <table>
-                @foreach (var c in ViewBag.CarrinhoDeCompras.Itens) {
-                    <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>
+                @if (ViewBag.CarrinhoDeCompras != null)
+                {
+                    foreach (var c in ViewBag.CarrinhoDeCompras.Itens)
+                    {
+                        <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>
+                    }
                 }
+
                 <tr>
-                    <td>Total: @String.Format("{0:c}", ViewBag.CarrinhoDeCompras.PrecoTotal)</td>
+                    <td>
+                        Total:
+                        @if (ViewBag.CarrinhoDeCompras != null)
+                        { @String.Format("{0:c}", ViewBag.CarrinhoDeCompras.PrecoTotal)}
+                        else
+                        { @String.Format("{0:c}", 0)}
+                    </td>
                     <td>@Html.ActionLink("Finalizar", "Index", "Checkout")</td>
                 </tr>
-        </table>
+            </table>
         </a>
-        
-            @RenderBody()
-        
+
+        @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Meu Ecommerce</p>
