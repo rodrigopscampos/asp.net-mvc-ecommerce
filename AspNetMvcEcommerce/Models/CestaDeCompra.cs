@@ -12,7 +12,8 @@ namespace AspNetMvcEcommerce.Models
         public decimal PrecoTotal
             => Itens.Sum(i => i.Value.PrecoTotal);
 
-        public int QuantidadeDeProdutos => Itens.Count;
+        public int QuantidadeDeItens 
+            => Itens.Sum(i => i.Value.Quantidade);
 
         public void Limpar()
         {

@@ -30,7 +30,7 @@
     </div>
     <div class="container body-content">
         <a class="basket">
-            <span>Carrinho: </span> @ViewBag.CarrinhoDeCompras.QuantidadeDeProdutos
+            <span>Carrinho: </span> @ViewBag.CarrinhoDeCompras.QuantidadeDeItens
             <table>
                 @foreach (var c in ViewBag.CarrinhoDeCompras.Itens) {
                     <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>

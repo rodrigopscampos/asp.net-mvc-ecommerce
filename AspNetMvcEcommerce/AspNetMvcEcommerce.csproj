@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201810180258209_FirstMigration.Designer.cs">
       <DependentUpon>201810180258209_FirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810180446307_2.cs" />
+    <Compile Include="Migrations\201810180446307_2.Designer.cs">
+      <DependentUpon>201810180446307_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CestaDeCompra.cs" />
@@ -276,7 +280,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\Checkout\Compra.cshtml" />
+    <Content Include="Views\Checkout\Continuar.cshtml" />
     <Content Include="Views\Checkout\CompraRealizadaComSucesso.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +308,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810180258209_FirstMigration.resx">
       <DependentUpon>201810180258209_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180446307_2.resx">
+      <DependentUpon>201810180446307_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

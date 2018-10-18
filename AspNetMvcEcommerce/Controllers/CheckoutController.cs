@@ -43,21 +43,20 @@ namespace AspNetMvcEcommerce.Controllers
 
         public ActionResult Limpar()
         {
-            try
-            {
-                this.CarrinhoDeCompras.Limpar();
-                //List<CarrinhoDeComprasItem> carts = _ctx.ShoppingCartDatas.ToList();
-                //_ctx.ShoppingCartDatas.RemoveRange(carts);
-                //_ctx.SaveChanges();
-            }
-            catch (Exception) { }
+            this.CarrinhoDeCompras.Limpar();
             return RedirectToAction("Index", "Home", null);
         }
 
         public ActionResult Continuar()
         {
-            //ViewBag.States = states;
-            //ViewBag.Cards = cards;
+            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+
+            ViewBag.Estados = new[]
+           {
+                new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
+                new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
+                new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
+            };
 
             return View();
         }
@@ -66,8 +65,14 @@ namespace AspNetMvcEcommerce.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Continuar(Models.Cliente customer)
         {
-            //ViewBag.States = states;
-            //ViewBag.Cards = cards;
+            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+
+            ViewBag.Estados = new[]
+            {
+                new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
+                new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
+                new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
+            };
 
             if (ModelState.IsValid)
             {
@@ -84,9 +89,7 @@ namespace AspNetMvcEcommerce.Controllers
                         Email = customer.Email,
                         Phone = customer.Phone,
                         Endereco = customer.Endereco,
-                        Bairro = customer.Bairro,
                         CEP = customer.CEP,
-                        Estado = customer.Estado,
                         CcNumero = customer.CcNumero,
                         CcValidade = customer.CcValidade
                     };
@@ -101,38 +104,26 @@ namespace AspNetMvcEcommerce.Controllers
                     _ctx.Clientes.Add(c);
                     _ctx.Ordens.Add(o);
 
-                    //foreach (var i in _ctx.ShoppingCartDatas.ToList<CarrinhoDeComprasItem>())
-                    //{
-                    //    _ctx.IrdemItens.Add(new OrdemItem
-                    //    {
-                    //        OrdemId = o.ItensId,
-                    //        Id = i.Id,
-                    //        Quantidade = i.Quantidade,
-                    //        ValorTotal = i.Quantidade * i.PrecoUnitario
-                    //    });
-                    //    _ctx.ShoppingCartDatas.Remove(i);
-                    //}
-
-                    _ctx.SaveChanges();
-
                     return RedirectToAction("CompraRealizadaComSucesso");
                 }
             }
 
-            List<ModelError> errors = new List<ModelError>();
-            foreach (ModelState modelState in ViewData.ModelState.Values)
+            var errors = new List<ModelError>();
+            foreach (var modelState in ViewData.ModelState.Values)
             {
                 foreach (ModelError error in modelState.Errors)
                 {
                     errors.Add(error);
                 }
             }
+
             return View(customer);
         }
 
         public ActionResult CompraRealizadaComSucesso()
         {
-            return View();
+            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+            return View(CarrinhoDeCompras);
         }
     }
 }
