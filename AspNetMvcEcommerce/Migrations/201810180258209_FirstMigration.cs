@@ -74,17 +74,6 @@ namespace AspNetMvcEcommerce.Migrations
                 .ForeignKey("dbo.Clientes", t => t.ClienteId, cascadeDelete: true)
                 .Index(t => t.ClienteId);
             
-            CreateTable(
-                "dbo.CarrinhoDeComprasItems",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        NomeDoProduto = c.String(),
-                        PrecoUnitario = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Quantidade = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
@@ -95,7 +84,6 @@ namespace AspNetMvcEcommerce.Migrations
             DropIndex("dbo.Ordems", new[] { "ClienteId" });
             DropIndex("dbo.OrdemItems", new[] { "OrdemId" });
             DropIndex("dbo.Produtoes", new[] { "CategoriaId" });
-            DropTable("dbo.CarrinhoDeComprasItems");
             DropTable("dbo.Ordems");
             DropTable("dbo.OrdemItems");
             DropTable("dbo.Clientes");

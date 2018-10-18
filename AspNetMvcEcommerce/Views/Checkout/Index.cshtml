@@ -1,58 +1,33 @@
 ﻿@model AspNetMvcEcommerce.Models.CestaDeCompra
-
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Quase lá";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section scripts {
     <script>
-        function atualizaPrecoTotal() {
-            $.ajax({
-                type: 'GET',
-                url: "Checkout/AtualizaTotal",
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    if (msg.precoTotal == "$0.00") {
-                        location.reload();
-                        return;
-                    }
-
-                    $('#totalPrice').text(msg.precoTotal);
-                }
-            })
+        function incrementar(produtoId) {
+            $.post("checkout", { acao: 'incrementar', produtoId: produtoId })
+                .done(function () {
+                    location.reload();
+                });
         }
 
-        function Change(el, acao, produtoId) {
-            var data = {
-                'acao': type,
-                'produtoId': produtoId
-            };
-
-            $.ajax({
-                type: 'POST',
-                url: "Checkout/AtualizaQuantidade",
-                data: data,
-                contentType: "application/json; charset=utf-8",
-                success: function (retorno) {
-                    if (retorno.quantidadeAtual == 0) {
-                        el.parentNode.parentNode.remove();
-                    } else {
-                        $(el).siblings('span')[0].innerHTML = msg.quantidadeAtual
-                    }
-
-                    atualizaPrecoTotal()
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    debugger;
-                }
-            });
+        function decrementar(produtoId) {
+            $.post("checkout", { acao: 'decrementar', produtoId: produtoId })
+                .done(function () {
+                    location.reload();
+                });
         }
-</script>
+
+        function remover(produtoId) {
+            $.post("checkout", { acao: 'remover', produtoId: produtoId })
+                .done(function () {
+                    location.reload();
+                });
+        }
+    </script>
 }
-
 <h2>Carrinho de compras</h2>
-
 @if (Model.QuantidadeDeProdutos == 0)
 {
     <br />
@@ -69,14 +44,14 @@ else
                 <td><span class="p-name">@item.NomeDoProduto</span> </td>
                 <td><span class="p-name">@String.Format("{0:c}", item.PrecoUnitario)</span> </td>
                 <td>
-                    <a class="quantity" onclick="Change(this, 'incrementa', @item.ProdutoId)">+</a>
-                    <span class="p-name">@item.Quantity</span>
-                    <a class="quantity" onclick="Change(this, 'decrementa',  @item.ProdutoId)">-</a>
-                    <a class="remove" onclick="Change(this, 'remove',  @item.ProdutoId)">Remover</a>
+                    <button class="btn btn-primary" onclick="incrementar(@item.ProdutoId)">+</button>
+                    <span class="p-name">@item.Quantidade</span>
+                    <button class="btn btn-secondary " onclick="decrementar(@item.ProdutoId)">-</button>
+                    <button class="btn btn-danger " onclick="remover(@item.ProdutoId)">Remover</button>
                 </td>
             </tr>
         }
-        <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", ViewBag.PrecoTotalDoCarrinho)</td></tr>
+        <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", Model.PrecoTotal)</td></tr>
     </table>
     <div class="button">
         @Html.ActionLink("Limpar", "Limpar", "Checkout", null, new { @class = "btn btn-default" })

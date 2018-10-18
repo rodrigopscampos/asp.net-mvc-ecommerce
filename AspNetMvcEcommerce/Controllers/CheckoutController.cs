@@ -6,66 +6,39 @@ namespace AspNetMvcEcommerce.Controllers
 {
     public class CheckoutController : BaseController
     {
-        private List<object> states;
-        private List<object> cards;
-
-        public CheckoutController()
-        {
-            states = new List<object> {
-                new { SID = "NSW", SName = "New South Wales" },
-                new { SID = "VIC", SName = "Victoria" },
-                new { SID = "QLD", SName = "Queensland" },
-                new { SID = "TAs", SName = "Tasmania" },
-                new { SID = "NT", SName = "Northern Territory" },
-                new { SID = "SA", SName = "South Australia" },
-                new { SID = "WA", SName = "Western Australia" },
-                new { SID = "ACT", SName = "Australian Capital Territory" }
-            };
-
-            cards = new List<object> {
-                new { Type = "VISA" },
-                new { Type = "Master Card" },
-                new { Type = "AMEX" }
-            };
-
-        }
-
         // GET: Checkout
-        public ActionResult Index()
+        public ActionResult Index(string acao, int? produtoId)
         {
-            ViewBag.CarrinhoDeCompras = this.CarrinhoDeCompras;
-            return View();
-        }
-
-        public JsonResult AtualizaQuantidade(string acao, int id)
-        {
-            var produto = CarrinhoDeCompras.GetItem(id);
-
-            switch (acao)
+            if (produtoId.HasValue)
             {
-                case "incrementa":
-                    produto.Quantidade++;
-                    CarrinhoDeCompras.SetItem(produto);
-                    return Json(new { quantidadeAtual = produto.Quantidade });
+                var produto = CarrinhoDeCompras.GetItem(produtoId.Value);
+                switch (acao)
+                {
+                    case "incrementar":
+                        produto.Quantidade++;
+                        CarrinhoDeCompras.SetItem(produto);
+                        break;
 
-                case "decrementa":
-                    produto.Quantidade--;
-                    CarrinhoDeCompras.SetItem(produto);
-                    return Json(new { quantidadeAtual = produto.Quantidade });
+                    case "decrementar":
+                        produto.Quantidade--;
+                        CarrinhoDeCompras.SetItem(produto);
 
-                case "remove":
-                    CarrinhoDeCompras.Remove(id);
-                    return Json(new { quantidadeAtual = 0 });
+                        if (produto.Quantidade == 0)
+                            CarrinhoDeCompras.Remove(produtoId.Value);
 
-                default:
-                    throw new Exception();
+                        break;
+
+                    case "remover":
+                        CarrinhoDeCompras.Remove(produtoId.Value);
+                        break;
+
+                    default:
+                        throw new Exception("Acao não encontrada");
+                }
             }
-        }
 
-        [HttpGet]
-        public JsonResult AtualizaTotal()
-        {
-            return Json(new { d = String.Format("{0:c}", CarrinhoDeCompras.PrecoTotal) }, JsonRequestBehavior.AllowGet);
+            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+            return View(CarrinhoDeCompras);
         }
 
         public ActionResult Limpar()
@@ -83,8 +56,8 @@ namespace AspNetMvcEcommerce.Controllers
 
         public ActionResult Continuar()
         {
-            ViewBag.States = states;
-            ViewBag.Cards = cards;
+            //ViewBag.States = states;
+            //ViewBag.Cards = cards;
 
             return View();
         }
@@ -93,8 +66,8 @@ namespace AspNetMvcEcommerce.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Continuar(Models.Cliente customer)
         {
-            ViewBag.States = states;
-            ViewBag.Cards = cards;
+            //ViewBag.States = states;
+            //ViewBag.Cards = cards;
 
             if (ModelState.IsValid)
             {

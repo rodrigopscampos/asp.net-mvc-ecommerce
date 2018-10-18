@@ -13,7 +13,7 @@ namespace AspNetMvcEcommerce.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810172309021_FirstMigration"; }
+            get { return "201810180258209_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

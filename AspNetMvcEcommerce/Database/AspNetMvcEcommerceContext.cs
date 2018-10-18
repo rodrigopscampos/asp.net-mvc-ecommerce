@@ -5,6 +5,7 @@ namespace AspNetMvcEcommerce
     public class AspNetMvcEcommerceContext : DbContext
     {
         public AspNetMvcEcommerceContext()
+            :base("AspNetMvcEcommerce")
         {
         }
 
