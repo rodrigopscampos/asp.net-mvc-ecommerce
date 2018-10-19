@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AspNetMvcEcommerce.Models
@@ -52,15 +51,5 @@ namespace AspNetMvcEcommerce.Models
         {
             Itens.Remove(id);
         }
-    }
-
-    public class CestaDeCompraItem
-    {
-        public int ProdutoId { get; set; }
-        public string NomeDoProduto { get; set; }
-        public decimal PrecoUnitario { get; set; }
-        public int Quantidade { get; set; }
-
-        public decimal PrecoTotal => PrecoUnitario * Quantidade;
     }
 }

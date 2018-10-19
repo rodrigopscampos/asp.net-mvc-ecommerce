@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -6,6 +7,9 @@ namespace AspNetMvcEcommerce.Controllers
 {
     public class CheckoutController : BaseController
     {
+        private ApplicationUserManager _userManager;
+
+
         // GET: Checkout
         public ActionResult Index(string acao, int? produtoId)
         {
@@ -47,6 +51,7 @@ namespace AspNetMvcEcommerce.Controllers
             return RedirectToAction("Index", "Home", null);
         }
 
+        [Authorize]
         public ActionResult Continuar()
         {
             ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
@@ -63,9 +68,10 @@ namespace AspNetMvcEcommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Continuar(Models.Cliente customer)
+        public ActionResult Continuar(Models.CheckoutDetalhes detalhes)
         {
             ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+            ViewBag.Cliente = _ctx.Users.Find(User.Identity.GetUserId());
 
             ViewBag.Estados = new[]
             {
@@ -76,33 +82,25 @@ namespace AspNetMvcEcommerce.Controllers
 
             if (ModelState.IsValid)
             {
-                if (customer.CcValidade <= DateTime.Now)
+                if (detalhes.CcValidade <= DateTime.Now)
                 {
                     ModelState.AddModelError("", "Cartão de crédito expirado");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    Cliente c = new Cliente
-                    {
-                        Nome = customer.Nome,
-                        Email = customer.Email,
-                        Phone = customer.Phone,
-                        Endereco = customer.Endereco,
-                        CEP = customer.CEP,
-                        CcNumero = customer.CcNumero,
-                        CcValidade = customer.CcValidade
-                    };
-
-                    Ordem o = new Ordem
+                    var ordem = new Ordem
                     {
                         DataDeCriacao = DateTime.Now,
                         DataDeEntrega = DateTime.Now.AddDays(5),
-                        ClienteId = c.Id
+                        ClienteId = User.Identity.GetUserId(),
+                        Endereco = detalhes.Endereco,
+                        CEP = detalhes.CEP,
+                        CcNumero = detalhes.CcNumero,
+                        CcValidade = detalhes.CcValidade
                     };
 
-                    _ctx.Clientes.Add(c);
-                    _ctx.Ordens.Add(o);
+                    _ctx.Ordens.Add(ordem);
 
                     return RedirectToAction("CompraRealizadaComSucesso");
                 }
@@ -117,7 +115,7 @@ namespace AspNetMvcEcommerce.Controllers
                 }
             }
 
-            return View(customer);
+            return View(detalhes);
         }
 
         public ActionResult CompraRealizadaComSucesso()

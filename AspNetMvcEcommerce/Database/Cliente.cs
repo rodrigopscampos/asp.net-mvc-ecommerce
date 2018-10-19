@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace AspNetMvcEcommerce
 {
-    public class Cliente
+    public class Cliente : IdentityUser
     {
-        public int Id { get; set; }
-
-        public string Nome { get; set; }
-        public string Phone { get; set; }
-        public string Endereco { get; set; }
-        public string CEP { get; set; }
-        public string CcNumero { get; set; }
-        public DateTime CcValidade { get; set; }
-        public string Email { get; set; }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Cliente> manager)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            return userIdentity;
+        }
     }
 }

@@ -1,15 +1,20 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace AspNetMvcEcommerce
 {
-    public class AspNetMvcEcommerceContext : DbContext
+    public class AspNetMvcEcommerceContext : IdentityDbContext<Cliente>
     {
         public AspNetMvcEcommerceContext()
             :base("AspNetMvcEcommerce")
         {
         }
 
-        public virtual DbSet<Cliente> Clientes { get; set; }
+        public static AspNetMvcEcommerceContext Create()
+        {
+            return new AspNetMvcEcommerceContext();
+        }
+
         public virtual DbSet<OrdemItem> IrdemItens { get; set; }
         public virtual DbSet<Ordem> Ordens { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }

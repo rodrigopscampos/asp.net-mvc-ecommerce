@@ -2,28 +2,32 @@
     ViewBag.Title = "Vamos Comprar!";
 }
 
-<h2>Produtos</h2>
+<div class="row">
+    <h2>Produtos</h2>
+</div>
 
-<form action="" method="get" id="frmCategoria" class="option">
-    <span>Categorias</span>
-    
-    <select id="categoria"  name="categoria" class="form-control" onchange="$('#frmCategoria').submit()">
-        <option value="">Tudo</option>
+<div class="row">
+    <form action="" method="get" id="frmCategoria" class="option">
+        <span>Categorias</span>
 
-        @foreach (var item in ViewBag.Categorias)
-        {
-            if (ViewBag.CategoriaSelectionada == item.Descricao)
+        <select id="categoria" name="categoria" class="form-control" onchange="$('#frmCategoria').submit()">
+            <option value="">Tudo</option>
+
+            @foreach (var item in ViewBag.Categorias)
             {
-                <option selected value="@item.Descricao">@item.Descricao</option>
+                if (ViewBag.CategoriaSelectionada == item.Descricao)
+                {
+                    <option selected value="@item.Descricao">@item.Descricao</option>
+                }
+                else
+                {
+                    <option value="@item.Descricao">@item.Descricao</option>
+                }
             }
-            else
-            {
-                <option value="@item.Descricao">@item.Descricao</option>
-            }
-        }
 
-    </select>
-</form>
+        </select>
+    </form>
+</div>
 
 @if (ViewBag.Produtos.Count == 0)
 {
@@ -35,21 +39,21 @@
 else
 {
 
-    <div class="container-fluid">
-      <div class="row">
-          @foreach (var item in ViewBag.Produtos)
-          {
-              <div class="col list-item">
-                  <span class="p-cart">@item.Categoria.Descricao</span>
-                  <span class="p-name">@item.Nome</span>
-                  <span class="p-description">@item.Descricao</span>
 
-                  <div class="add-carinho">
-                      @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id, categoria = ViewBag.CategoriaSelectionada }, null)
-                      <span class="p-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
-                  </div>
-              </div>
-          }
-      </div>
+    <div class="row">
+        @foreach (var item in ViewBag.Produtos)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 list-item">
+                <span class="p-cart">@item.Categoria.Descricao</span>
+                <span class="p-name">@item.Nome</span>
+                <span class="p-description">@item.Descricao</span>
+
+                <div class="add-carinho">
+                    @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id, categoria = ViewBag.CategoriaSelectionada }, null)
+                    <span class="p-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
+                </div>
+            </div>
+        }
     </div>
+
 }
