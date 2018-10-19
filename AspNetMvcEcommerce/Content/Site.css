@@ -24,7 +24,7 @@ textarea {
 }
 
 .navbar-theme {
-    background: #2dbb9b;
+    background: rgb(98,98,250);
     font-weight: bold;
 }
 
@@ -32,7 +32,8 @@ textarea {
     color: #fff
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+.nav > li > a:hover, 
+.nav > li > a:focus {
     background: rgba(255, 255, 255, .2);
 }
 
@@ -45,16 +46,16 @@ textarea {
     font-weight: bold;
     font-size: .8em;
     float: right;
-    padding: 20px;
+    padding: 18px;
     background: none;
-    border: 1px solid #2dbb9b;
-    color: #2dbb9b;
+    border: 1px solid rgb(98,98,250);
+    color: rgb(98,98,250);
     letter-spacing: normal;
     position: relative;
 }
 
 .basket:hover {
-    background: #2dbb9b
+    background: rgb(98,98,250)
 }
 
 .basket span {
@@ -69,7 +70,7 @@ textarea {
     margin-top: 20px;
     right: -1px;
     display: none;
-    border: 1px solid #2dbb9b;
+    border: 1px solid rgb(98,98,250);
     background: #fff;
     color: #808080;
     z-index: 3;
@@ -98,7 +99,7 @@ textarea {
 .basket table tr:last-child a {
     padding: 10px 20px;
     float: right;
-    color: #2dbb9b;
+    color: rgb(98,98,250);
     opacity: .7;
     transition: .3s;
     font-weight: bold;
@@ -108,7 +109,7 @@ textarea {
 
 .basket table tr:last-child a:hover {
     opacity: 1;
-    background: #2dbb9b;
+    background: rgb(98,98,250);
     color: #fff
 }
 
@@ -116,14 +117,15 @@ textarea {
     padding: 10px 20px;
 }
 
-/*.list-view {
-    display: flex;
-    flex-wrap: wrap
-}*/
+.produtos {
+    padding-top: 10px;
+}
+
 .list-item {
-    border: 1px solid #2dbb9b;
+    border: 1px solid rgb(98,98,250);
     margin: 5px 5px 0px 0px;
     padding: 15px 10px;
+    min-width: 250px;
 }
 
 .list-item:hover {
@@ -133,36 +135,38 @@ textarea {
 
 .list-item .add-carinho {
     padding-top: 10px;
+    min-width: 200px;
 }
 
 
 .list-item .add-carinho a {
-    border: 1px solid #2dbb9b;
+    border: 1px solid rgb(98,98,250);
     padding: 10px;
     font-weight: bold;
     font-size: .8em;
-    margin: 10px;
+    margin-top: 0;
+    margin-right: 5px;
     cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
-    color: #2dbb9b;
+    color: rgb(98,98,250);
 }
 
 .list-item .add-carinho a:hover {
     color: #fff;
-    background: #2dbb9b;
+    background: rgb(98,98,250);
 }
 
 .list-item .p-cat {
-    color: #2dbb9b;
+    color: rgb(98,98,250);
     display: inline-block;
     padding: 9px 0;
     font-size: .8em;
     font-weight: bold;
 }
 .list-item .p-brand {
-    color: #2dbb9b;
-    border: 1px solid #2dbb9b;
+    color: rgb(98,98,250);
+    border: 1px solid rgb(98,98,250);
     font-size: .8em;
     font-weight: bold;
     padding: 7px;
@@ -180,7 +184,7 @@ textarea {
 }
 .list-item .p-price {
     color: #fff;
-    background: #2dbb9b;
+    background: rgb(98,98,250);
     font-weight: bold;
     font-size: .9em;
     padding: 10px;
@@ -209,7 +213,7 @@ textarea {
 }
 
 .cart-page, .cart-page th, .cart-page td {
-    border: 1px solid #2dbb9b;
+    border: 1px solid rgb(98,98,250);
     border-collapse: collapse;
     text-align: center;
     padding: 10px;
@@ -217,7 +221,7 @@ textarea {
 
 .cart-page .quantity {
     vertical-align: middle;
-    background: #2dbb9b;
+    background: rgb(98,98,250);
     color: #fff;
     font-weight: bold;
     width: 30px;

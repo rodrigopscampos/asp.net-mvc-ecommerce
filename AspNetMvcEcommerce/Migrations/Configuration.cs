@@ -33,6 +33,7 @@ namespace AspNetMvcEcommerce.Migrations
                 .Select(i => new Produto
                 {
                     Nome = $"{descricao} - Produto {i}",
+                    Descricao = $"Produto {descricao} - Produto {i} ...",
                     Preco = _random.Next(precoMinimo * 100, precoMaximo * 100) / 100
                 })
                 .ToArray();

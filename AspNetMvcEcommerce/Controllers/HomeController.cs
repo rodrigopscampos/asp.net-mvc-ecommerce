@@ -11,7 +11,7 @@ namespace AspNetMvcEcommerce.Controllers
             ViewBag.CarrinhoDeCompras = this.CarrinhoDeCompras;
             ViewBag.CategoriaSelectionada = categoria;
 
-            if (categoria == null)
+            if (string.IsNullOrWhiteSpace(categoria))
             {
                 ViewBag.Produtos = _ctx.Produtos.ToList();
             }

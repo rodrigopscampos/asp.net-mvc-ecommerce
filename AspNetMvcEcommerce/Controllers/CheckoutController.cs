@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Controllers
@@ -70,16 +72,6 @@ namespace AspNetMvcEcommerce.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Continuar(Models.CheckoutDetalhes detalhes)
         {
-            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
-            ViewBag.Cliente = _ctx.Users.Find(User.Identity.GetUserId());
-
-            ViewBag.Estados = new[]
-            {
-                new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
-                new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
-                new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
-            };
-
             if (ModelState.IsValid)
             {
                 if (detalhes.CcValidade <= DateTime.Now)
@@ -97,12 +89,19 @@ namespace AspNetMvcEcommerce.Controllers
                         Endereco = detalhes.Endereco,
                         CEP = detalhes.CEP,
                         CcNumero = detalhes.CcNumero,
-                        CcValidade = detalhes.CcValidade
+                        CcValidade = detalhes.CcValidade,
+                        OrdemItems = CarrinhoDeCompras.Itens.Values.Select(i => new OrdemItem
+                        {
+                            Preco = i.PrecoTotal,
+                            ProdutoId = i.ProdutoId,
+                            Quantidade = i.Quantidade
+                        }).ToArray()
                     };
 
                     _ctx.Ordens.Add(ordem);
+                    _ctx.SaveChanges();
 
-                    return RedirectToAction("CompraRealizadaComSucesso");
+                    return RedirectToAction("CompraRealizadaComSucesso", new { ordemId = ordem.Id } );
                 }
             }
 
@@ -118,10 +117,17 @@ namespace AspNetMvcEcommerce.Controllers
             return View(detalhes);
         }
 
-        public ActionResult CompraRealizadaComSucesso()
+        public ActionResult CompraRealizadaComSucesso(int ordemId)
         {
-            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
-            return View(CarrinhoDeCompras);
+            var ordem = _ctx.Ordens
+                    .Include(o => o.Cliente)
+                    .Include(o => o.OrdemItems.Select(i => i.Produto))
+                    .FirstOrDefault(o => o.Id == ordemId);
+
+            //ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
+            //ViewBag.Cliente = _ctx.Users.Find(User.Identity.GetUserId());
+
+            return View(ordem);
         }
     }
 }

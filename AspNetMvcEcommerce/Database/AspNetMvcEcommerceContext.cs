@@ -15,7 +15,6 @@ namespace AspNetMvcEcommerce
             return new AspNetMvcEcommerceContext();
         }
 
-        public virtual DbSet<OrdemItem> IrdemItens { get; set; }
         public virtual DbSet<Ordem> Ordens { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }

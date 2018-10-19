@@ -40,10 +40,10 @@ else
 {
 
 
-    <div class="row">
+    <div class="row produtos">
         @foreach (var item in ViewBag.Produtos)
         {
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 list-item">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 list-item">
                 <span class="p-cart">@item.Categoria.Descricao</span>
                 <span class="p-name">@item.Nome</span>
                 <span class="p-description">@item.Descricao</span>

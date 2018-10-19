@@ -8,6 +8,8 @@ namespace AspNetMvcEcommerce
 {
     public class Cliente : IdentityUser
     {
+        public string Nome { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Cliente> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
