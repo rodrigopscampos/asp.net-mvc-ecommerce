@@ -21,6 +21,7 @@ namespace AspNetMvcEcommerce.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             ViewBag.UsuarioAdmin = User.IsInRole("admin");
+            ViewBag.CarrinhoDeCompras = this.CarrinhoDeCompras;
 
             base.OnActionExecuting(filterContext);
         }

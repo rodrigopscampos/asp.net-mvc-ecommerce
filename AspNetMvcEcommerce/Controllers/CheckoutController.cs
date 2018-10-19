@@ -3,15 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Controllers
 {
     public class CheckoutController : BaseController
     {
-        private ApplicationUserManager _userManager;
-
-
         // GET: Checkout
         public ActionResult Index(string acao, int? produtoId)
         {
@@ -39,7 +37,7 @@ namespace AspNetMvcEcommerce.Controllers
                         break;
 
                     default:
-                        throw new Exception("Acao não encontrada");
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest, $"ação '{acao}' inválida");
                 }
             }
 
@@ -56,10 +54,8 @@ namespace AspNetMvcEcommerce.Controllers
         [Authorize]
         public ActionResult Continuar()
         {
-            ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
-
             ViewBag.Estados = new[]
-           {
+            {
                 new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
                 new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
                 new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
