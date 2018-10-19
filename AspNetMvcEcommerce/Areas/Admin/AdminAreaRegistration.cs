@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using AspNetMvcEcommerce.Areas.Admin.Controllers;
+using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Areas.Admin
 {
@@ -18,7 +19,8 @@ namespace AspNetMvcEcommerce.Areas.Admin
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-            );
+                //namespaces: new[] { typeof(BaseController).Namespace }
+                );
         }
     }
 }

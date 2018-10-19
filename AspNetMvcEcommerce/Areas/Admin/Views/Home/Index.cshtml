@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AspNetMvcEcommerce.Ordem>
+
+
+@{
+    ViewBag.Title = "Área Administradora";
+}
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td colspan="2" class="text-center"><strong>Gerenciar</strong> </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.RouteLink("Produtos", new { controller = "Produtos", action = "Index" })</td>
+            </tr>
+            <tr>
+                <td>@Html.RouteLink("Categorias", new { controller = "Categorias", action = "Index" })</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Data</td>
+                <td>Cliente</td>
+                <td>Entrega</td>
+                <td>Qtade. Itens</td>
+                <td>Valor Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DataDeCriacao</td>
+                    <td>@item.Cliente.UserName</td>
+                    <td>@item.DataDeEntrega</td>
+                    <td>@item.OrdemItems.Count</td>
+                    <td>@item.PrecoTotal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

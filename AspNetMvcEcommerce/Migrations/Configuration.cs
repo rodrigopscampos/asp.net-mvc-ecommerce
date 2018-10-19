@@ -1,10 +1,12 @@
 namespace AspNetMvcEcommerce.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AspNetMvcEcommerce.AspNetMvcEcommerceContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AspNetMvcEcommerceContext>
     {
         static Random _random = new Random();
 
@@ -24,7 +26,38 @@ namespace AspNetMvcEcommerce.Migrations
                 GerarCategoria("Video Games", 3, 500, 2000)
                 );
 
-            context.SaveChanges();
+            var passwordHasher = new PasswordHasher();
+
+            var admin = new Cliente
+            {
+                UserName = "admin@meu-ecommerce.com.br",
+                Email = "admin@meu-ecommerce.com.br",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PasswordHash = passwordHasher.HashPassword("admin")
+            };
+
+            if (!context.Roles.Any(r => r.Name == "admin"))
+            {
+                var adminRole = new IdentityRole { Name = "admin" };
+                context.Roles.Add(adminRole);
+            }
+
+            if (!context.Users.Any(u => u.UserName == "admin"))
+            {
+                context.Users.Add(admin);
+                context.SaveChanges();
+
+                var adminRole = context.Roles.FirstOrDefault(r => r.Name == "admin");
+
+                admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
+                context.SaveChanges();
+            }
+
+            /*
+                var manager = new ApplicationUserManager(new UserStore<Cliente>(context));
+                manager.Create(admin, "admin");
+                manager.AddToRole(admin.Id, "admin");
+            */
         }
 
         private Categoria GerarCategoria(string descricao, int qtdadeProdutos, int precoMinimo, int precoMaximo)

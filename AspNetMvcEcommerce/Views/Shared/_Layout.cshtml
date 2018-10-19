@@ -23,8 +23,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Sobre", "Sobre", "")</li>
                     <li>@Html.ActionLink("Contato", "Contato", "")</li>
+
+                    @if (ViewBag.UsuarioAdmin != null && ViewBag.UsuarioAdmin)
+                    {
+                        <li>@Html.RouteLink("Aria de administração", new { area = "Admin", controller = "Home", action = "Index" })</li>
+                    }
                 </ul>
-                
+
                 <ul class="nav navbar-nav navbar-right">
                     <a class="basket">
                         <span>Carrinho: </span>
@@ -37,7 +42,7 @@
                             {
                                 foreach (var c in ViewBag.CarrinhoDeCompras.Itens)
                                 {
-                                    <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>
+                            <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>
                                 }
                             }
 
@@ -61,7 +66,7 @@
     </div>
     <div class="container body-content">
         <div class="">
-            
+
         </div>
 
         @RenderBody()

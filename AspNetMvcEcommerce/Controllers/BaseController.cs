@@ -17,5 +17,12 @@ namespace AspNetMvcEcommerce.Controllers
                 return (CestaDeCompra)Session["cesta"];
             }
         }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            ViewBag.UsuarioAdmin = User.IsInRole("admin");
+
+            base.OnActionExecuting(filterContext);
+        }
     }
 }
