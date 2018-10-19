@@ -101,6 +101,8 @@ namespace AspNetMvcEcommerce.Controllers
                     _ctx.Ordens.Add(ordem);
                     _ctx.SaveChanges();
 
+                    CarrinhoDeCompras.Limpar();
+
                     return RedirectToAction("CompraRealizadaComSucesso", new { ordemId = ordem.Id } );
                 }
             }
@@ -123,9 +125,6 @@ namespace AspNetMvcEcommerce.Controllers
                     .Include(o => o.Cliente)
                     .Include(o => o.OrdemItems.Select(i => i.Produto))
                     .FirstOrDefault(o => o.Id == ordemId);
-
-            //ViewBag.CarrinhoDeCompras = CarrinhoDeCompras;
-            //ViewBag.Cliente = _ctx.Users.Find(User.Identity.GetUserId());
 
             return View(ordem);
         }
