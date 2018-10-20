@@ -13,7 +13,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div class="form-group">
-            Endereço de entrega:
+            @Html.Strong("Endereço de entrega:")
         </div>
 
         <div class="form-group">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            Cartão de crédito
+            @Html.Strong("Cartão de crédito:")
         </div>
 
         <div class="form-group">
@@ -63,6 +63,7 @@
             </div>
         </div>
     </div>
+
 }
 <div>
     @Html.ActionLink("Voltar", "Index")
