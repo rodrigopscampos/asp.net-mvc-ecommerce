@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AspNetMvcEcommerce.Models
 {
-    public class CheckoutDetalhes
+    public class CheckoutDetalhesViewModel
     {
         [Display(Name = "Estado")]
         [Required(ErrorMessage = "Estado é requerido")]

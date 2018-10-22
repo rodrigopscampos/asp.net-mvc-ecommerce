@@ -66,7 +66,7 @@ namespace AspNetMvcEcommerce.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Continuar(Models.CheckoutDetalhes detalhes)
+        public ActionResult Continuar(Models.CheckoutDetalhesViewModel detalhes)
         {
             if (ModelState.IsValid)
             {

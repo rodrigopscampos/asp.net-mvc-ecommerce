@@ -206,7 +206,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CestaDeCompra.cs" />
     <Compile Include="Models\CestaDeCompraItem.cs" />
-    <Compile Include="Models\CheckoutDetalhes.cs" />
+    <Compile Include="Models\CheckoutDetalhesViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
