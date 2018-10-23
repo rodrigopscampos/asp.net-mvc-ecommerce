@@ -1,5 +1,4 @@
-﻿using AspNetMvcEcommerce.Areas.Admin.Controllers;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Areas.Admin
 {
@@ -15,12 +14,7 @@ namespace AspNetMvcEcommerce.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-                //namespaces: new[] { typeof(BaseController).Namespace }
-                );
+            context.Routes.MapMvcAttributeRoutes();
         }
     }
 }
