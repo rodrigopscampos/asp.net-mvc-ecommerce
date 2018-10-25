@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcEcommerce", "AspNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razor", "Razor\Razor.csproj", "{324EA23D-3682-490B-A165-5901FC49596A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TratamentoExcecoes", "TratamentoExcecoes\TratamentoExcecoes.csproj", "{10CE4FF1-D65D-4966-BAFB-937D8F4B425D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{324EA23D-3682-490B-A165-5901FC49596A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{324EA23D-3682-490B-A165-5901FC49596A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{324EA23D-3682-490B-A165-5901FC49596A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CE4FF1-D65D-4966-BAFB-937D8F4B425D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CE4FF1-D65D-4966-BAFB-937D8F4B425D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CE4FF1-D65D-4966-BAFB-937D8F4B425D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CE4FF1-D65D-4966-BAFB-937D8F4B425D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
