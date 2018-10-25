@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Areas.Admin.Controllers
-{
+{   
+    [RoutePrefix("")]
     public class HomeController : BaseController
     {
-        // GET: Admin/Index
+        [Route("")]
         public ActionResult Index()
         {
             var model = _ctx.Ordens;

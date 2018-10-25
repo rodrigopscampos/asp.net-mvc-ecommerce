@@ -2,6 +2,7 @@
 
 namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
+    [RouteArea("Admin")]
     [Authorize(Roles = "admin")]
     public class BaseController : Controller
     {

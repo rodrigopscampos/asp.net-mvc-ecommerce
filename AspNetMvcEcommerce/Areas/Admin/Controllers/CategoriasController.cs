@@ -5,16 +5,16 @@ using System.Web.Mvc;
 
 namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {
-    [RouteArea("Admin")]
+    [RoutePrefix("categorias")]
     public class CategoriasController : BaseController
     {
-        [Route("categorias")]
+        [Route("")]
         public ActionResult Index()
         {
             return View(_ctx.Categorias.ToList());
         }
 
-        [Route("categorias/{*id}")]
+        [Route("detalhes/{*id}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -29,7 +29,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        [Route("categorias/create")]
+        [Route("create")]
         public ActionResult Create()
         {
             return View();
@@ -40,7 +40,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("categorias/create")]
+        [Route("create")]
         public ActionResult Create([Bind(Include = "Id,Descricao")] Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -53,7 +53,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        [Route("categorias/edit")]
+        [Route("edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("categorias/edit")]
+        [Route("edit")]
         public ActionResult Edit([Bind(Include = "Id,Descricao")] Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categorias/Delete/5
-        [Route("categorias/delete/{*id}")]
+        [Route("delete/{*id}")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         // POST: Admin/Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("categorias/Delete/{id}")]
+        [Route("Delete/{id}")]
         public ActionResult DeleteConfirmed(int id)
         {
             Categoria categoria = _ctx.Categorias.Find(id);
