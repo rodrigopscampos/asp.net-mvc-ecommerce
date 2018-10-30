@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TratamentoExcecoes", "Trata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFameworkCodeFirst", "EntityFameworkCodeFirst\EntityFameworkCodeFirst.csproj", "{9F4C5AA6-849F-4978-9205-FD8CC43EF49B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{C5AFC439-33BC-423E-ABF2-093816C105AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9F4C5AA6-849F-4978-9205-FD8CC43EF49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F4C5AA6-849F-4978-9205-FD8CC43EF49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F4C5AA6-849F-4978-9205-FD8CC43EF49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
