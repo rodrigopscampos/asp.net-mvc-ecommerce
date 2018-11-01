@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFameworkCodeFirst", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{C5AFC439-33BC-423E-ABF2-093816C105AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntroducaoWeb", "IntroducaoWeb", "{A893CBDE-9E30-4940-BA46-4D8FB8C295EE}"
+	ProjectSection(SolutionItems) = preProject
+		IntroducaoWeb\html.html = IntroducaoWeb\html.html
+		IntroducaoWeb\html_css.html = IntroducaoWeb\html_css.html
+		IntroducaoWeb\html_css_javascript.html = IntroducaoWeb\html_css_javascript.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
