@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Linq;
 
 namespace AspNetMvcEcommerce.Areas.Admin.Controllers
 {   
@@ -8,7 +9,7 @@ namespace AspNetMvcEcommerce.Areas.Admin.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            var model = _ctx.Ordens;
+            var model = _ctx.Ordens.ToArray();
 
             return View(model);
         }

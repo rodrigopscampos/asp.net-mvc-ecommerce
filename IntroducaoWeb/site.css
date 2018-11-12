@@ -10,7 +10,7 @@ body {
 
 .list-item {
     border: 1px solid rgb(98,98,250);
-    margin: 5px 5px 0px 0px;
+    margin: 5px 5px 0px 0px;    
     padding: 15px 10px;
     min-width: 250px;
 }

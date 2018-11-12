@@ -38,8 +38,6 @@
 }
 else
 {
-
-
     <div class="row produtos">
         @foreach (var item in ViewBag.Produtos)
         {
@@ -49,8 +47,8 @@ else
                 <span class="p-description">@item.Descricao</span>
 
                 <div class="add-carinho">
-                    @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id, categoria = ViewBag.CategoriaSelectionada }, null)
-                    <span class="p-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
+                    @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id, categoria = ViewBag.CategoriaSelectionada }, new { @class= "btn btn-primary" })
+                    <span disabled class="btn btn-info">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
                 </div>
             </div>
         }

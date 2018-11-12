@@ -7,68 +7,35 @@
     @Styles.Render("~/Content/css")
     @RenderSection("scripts", required: false)
 
+
+
 </head>
 <body>
-    <div class="navbar navbar-theme navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Meu Ecommerce", "Index", "", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Sobre", "Sobre", "")</li>
-                    <li>@Html.ActionLink("Contato", "Contato", "")</li>
 
-                    @if (ViewBag.UsuarioAdmin != null && ViewBag.UsuarioAdmin)
-                    {
-                        <li>@Html.RouteLink("Área de administração", new { area = "Admin", controller = "Home", action = "Index" })</li>
-                    }
-                </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        @Html.ActionLink("Meu Ecommerce", "Index", "")
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <a class="basket">
-                        <span>Carrinho: </span>
-                        @if (ViewBag.CarrinhoDeCompras != null)
-            { @ViewBag.CarrinhoDeCompras.QuantidadeDeItens}
-                        else
-                        { @String.Format("{0}", 0) }
-                        <table>
-                            @if (ViewBag.CarrinhoDeCompras != null)
-                            {
-                                foreach (var c in ViewBag.CarrinhoDeCompras.Itens)
-                                {
-                            <tr><td>@c.Value.Quantidade x @String.Format("{0:c}", c.Value.PrecoUnitario)</td><td>@c.Value.NomeDoProduto</td></tr>
-                                }
-                            }
+        <div class="collapse navbar-collapse teste" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Sobre", "Sobre", "", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contato", "Contato", "", new { area = "" }, new { @class = "nav-link" })
+                </li>
+            </ul>
 
-                            <tr>
-                                <td>
-                                    Total:
-                                    @if (ViewBag.CarrinhoDeCompras != null)
-                                    { @String.Format("{0:c}", ViewBag.CarrinhoDeCompras.PrecoTotal)}
-                                    else
-                                    { @String.Format("{0:c}", 0)}
-                                </td>
-                                <td>@Html.ActionLink("Finalizar", "Index", "Checkout")</td>
-                            </tr>
-                        </table>
-                    </a>
-                </ul>
-
-                @Html.Partial("_LoginPartial")
+            <div class="nav-item">
+                <a class="nav-link" href="/Checkout">Carrinho: @string.Format("{0}", ViewBag?.CarrinhoDeCompras?.QuantidadeDeItens ?? 0)  </a>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        <div class="">
+    </nav>
 
-        </div>
-
+    <div class="container-fluid body-conteudo">
         @RenderBody()
 
         <hr />

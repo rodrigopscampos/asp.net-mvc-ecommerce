@@ -37,24 +37,24 @@
 }
 else
 {
-    <table class="cart-page">
+    <table class="table table-striped">
         @foreach (var item in Model.Itens.Values)
         {
             <tr>
-                <td><span class="p-name">@item.NomeDoProduto</span> </td>
-                <td><span class="p-name">@String.Format("{0:c}", item.PrecoUnitario)</span> </td>
+                <td>@item.NomeDoProduto</td>
+                <td>@String.Format("{0:c}", item.PrecoUnitario) </td>
                 <td>
-                    <button class="btn btn-primary" onclick="incrementar(@item.ProdutoId)">+</button>
-                    <span class="p-name">@item.Quantidade</span>
-                    <button class="btn btn-secondary " onclick="decrementar(@item.ProdutoId)">-</button>
-                    <button class="btn btn-danger " onclick="remover(@item.ProdutoId)">Remover</button>
+                    <span>
+                        <button class="btn btn-primary" onclick="incrementar(@item.ProdutoId)">+</button>
+                        <span>@item.Quantidade</span>
+                        <button class="btn btn-secondary " onclick="decrementar(@item.ProdutoId)">-</button>
+                        <button class="btn btn-danger " onclick="remover(@item.ProdutoId)">Remover</button>
+                    </span>
                 </td>
             </tr>
         }
         <tr><td>Total: </td><td id="totalPrice" colspan="2">@String.Format("{0:c}", Model.PrecoTotal)</td></tr>
     </table>
-    <div class="button">
-        @Html.ActionLink("Limpar", "Limpar", "Checkout", null, new { @class = "btn btn-default" })
-        @Html.ActionLink("Continuar", "Continuar", "Checkout", null, new { @class = "btn btn-info" })
-    </div>
+    @Html.ActionLink("Limpar", "Limpar", "Checkout", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Continuar", "Continuar", "Checkout", null, new { @class = "btn btn-info" })
 }

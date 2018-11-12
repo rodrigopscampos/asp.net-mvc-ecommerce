@@ -11,7 +11,7 @@ namespace AspNetMvcEcommerce.Controllers
     public class CheckoutController : BaseController
     {
         // GET: Checkout
-        public ActionResult Index(string acao, int? produtoId)
+        public ActionResult Index(string acao = null, int? produtoId = null)
         {
             if (produtoId.HasValue)
             {
