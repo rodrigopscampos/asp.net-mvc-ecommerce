@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiniProjetos", "MiniProjeto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeuEcommerce", "MeuEcommerce", "{16A63029-8DD0-4946-8107-5FAB9C7A4600}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcEcommerce_Areas", "AspNetMvcEcommerce_Areas\AspNetMvcEcommerce_Areas.csproj", "{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5AFC439-33BC-423E-ABF2-093816C105AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{10CE4FF1-D65D-4966-BAFB-937D8F4B425D} = {16FDFCE0-036F-4C35-88F7-A15DCFBF301B}
 		{9F4C5AA6-849F-4978-9205-FD8CC43EF49B} = {16FDFCE0-036F-4C35-88F7-A15DCFBF301B}
 		{C5AFC439-33BC-423E-ABF2-093816C105AB} = {16FDFCE0-036F-4C35-88F7-A15DCFBF301B}
+		{879EE6FA-AAD3-4F4D-8ADB-C78A05B470B0} = {16A63029-8DD0-4946-8107-5FAB9C7A4600}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB24B5F5-6EDE-4EC7-99C1-BD4191F45989}
