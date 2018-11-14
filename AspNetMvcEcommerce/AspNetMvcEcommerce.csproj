@@ -181,11 +181,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CategoriasController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -222,20 +217,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Categorias\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Categorias\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Categorias\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Categorias\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Categorias\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Produtos\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Produtos\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Produtos\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Produtos\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Produtos\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
@@ -312,7 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
