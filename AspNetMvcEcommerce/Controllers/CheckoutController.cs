@@ -10,6 +10,18 @@ namespace AspNetMvcEcommerce.Controllers
 {
     public class CheckoutController : BaseController
     {
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            ViewBag.Estados = new[]
+            {
+                new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
+                new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
+                new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
+            };
+
+            base.OnActionExecuting(filterContext);
+        }
+
         // GET: Checkout
         public ActionResult Index(string acao = null, int? produtoId = null)
         {
@@ -51,16 +63,8 @@ namespace AspNetMvcEcommerce.Controllers
             return RedirectToAction("Index", "Home", null);
         }
 
-        [Authorize]
         public ActionResult Continuar()
         {
-            ViewBag.Estados = new[]
-            {
-                new SelectListItem { Value = "SP",  Text = "São Paulo", Selected = true },
-                new SelectListItem { Value = "RJ",  Text = "Rio de Janeiro" },
-                new SelectListItem { Value = "MG",  Text = "Minas Gerais"   }
-            };
-
             return View();
         }
 
@@ -81,7 +85,9 @@ namespace AspNetMvcEcommerce.Controllers
                     {
                         DataDeCriacao = DateTime.Now,
                         DataDeEntrega = DateTime.Now.AddDays(5),
-                        ClienteId = User.Identity.GetUserId(),
+
+                        Cliente = new Cliente(),
+
                         Endereco = detalhes.Endereco,
                         CEP = detalhes.CEP,
                         CcNumero = detalhes.CcNumero,
@@ -89,7 +95,9 @@ namespace AspNetMvcEcommerce.Controllers
                         OrdemItems = CarrinhoDeCompras.Itens.Values.Select(i => new OrdemItem
                         {
                             Preco = i.PrecoTotal,
-                            ProdutoId = i.ProdutoId,
+                            
+                            Produto = new Produto() { Nome = i.NomeDoProduto },
+
                             Quantidade = i.Quantidade
                         }).ToArray()
                     };
@@ -118,8 +126,6 @@ namespace AspNetMvcEcommerce.Controllers
         public ActionResult CompraRealizadaComSucesso(int ordemId)
         {
             var ordem = _ctx.Ordens
-                    .Include(o => o.Cliente)
-                    .Include(o => o.OrdemItems.Select(i => i.Produto))
                     .FirstOrDefault(o => o.Id == ordemId);
 
             return View(ordem);
