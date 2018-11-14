@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML + CSS + JavaScript</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function incrementar(td_id) {
+            valor = parseInt(document.getElementById(td_id).innerHTML);
+            valor = valor + 1;
+            document.getElementById(td_id).innerHTML = valor;
+        }
+
+        function decrementar(td_id) {
+            valor = parseInt(document.getElementById(td_id).innerHTML);
+            valor = valor - 1;
+
+            if (valor == -1) {
+                var confirmacao = confirm('Deseja deixar o estoque negativo ?')
+
+                if (!confirmacao) {
+                    valor = 0;
+                }
+            }
+
+            document.getElementById(td_id).innerHTML = valor;
+        }
+    </script>
+
+</head>
+
+
+
+<body class="container mb-2 mt-2">
+
+    <div class="row">
+        <form>
+            <div class="form-inline ">
+                <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="text" id="input_nome" placeholder="Nome" />
+                <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="password" id="input_senha" placeholder="Senha">
+                <input class="btn btn-primary" type="button" value="Entrar">
+            </div>
+        </form>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <caption>Controle de estoque</caption>
+            <thead>
+                <tr>
+                    <td>Produto</td>
+                    <td>Quantidade</td>
+                    <td colspan="2">Atualizar</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Produto 1</td>
+                    <td id="td_quantidade_produto1">1</td>
+                    <td><button onclick="incrementar('td_quantidade_produto1')"> + </button></td>
+                    <td><button onclick="decrementar('td_quantidade_produto1')"> - </button></td>
+                </tr>
+                <tr>
+                    <td>Produto 2</td>
+                    <td id="td_quantidade_produto2">1</td>
+                    <td><button onclick="incrementar('td_quantidade_produto2')"> + </button></td>
+                    <td><button onclick="decrementar('td_quantidade_produto2')"> - </button></td>
+                </tr>
+                <tr>
+                    <td>Produto 3</td>
+                    <td id="td_quantidade_produto3">1</td>
+                    <td><button onclick="incrementar('td_quantidade_produto3')"> + </button></td>
+                    <td><button onclick="decrementar('td_quantidade_produto3')"> - </button></td>
+                </tr>
+                <tr>
+                    <td>Produto 4</td>
+                    <td id="td_quantidade_produto4">1</td>
+                    <td><button onclick="incrementar('td_quantidade_produto4')"> + </button></td>
+                    <td><button onclick="decrementar('td_quantidade_produto4')"> - </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos Comprar!</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Meu Ecommerce</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse teste" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contato</a>
+                </li>
+
+            </ul>
+
+            <div class="nav-item">
+                <a class="nav-link" href="#">Carrinho</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container conteudo">
+
+        <div class="row">
+            <form action="" method="get" id="frmCategoria" class="option">
+                <h2>Categorias</h2>
+
+                <select id="categoria" name="categoria" class="form-control" onchange="">
+                    <option value="">Tudo</option>
+
+                    <option value="Smartphones">Smartphones</option>
+                    <option value="Notebooks">Notebooks</option>
+                    <option value="TVs">TVs</option>
+                    <option value="Video Games">Video Games</option>
+
+                </select>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 list-item">
+                <span class="p-cart">Video Games</span>
+                <span class="p-name">Video Games - Produto 0</span>
+                <span class="p-description">Produto Video Games - Produto 0 ...</span>
+                <input type="button" class="btn btn-primary" value="Adicionar" />
+                <span disabled class="btn btn-info">R$1.471,00</span>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 list-item">
+                <span class="p-cart">Video Games</span>
+                <span class="p-name">Video Games - Produto 1</span>
+                <span class="p-description">Produto Video Games - Produto 1 ...</span>
+                <input type="button" class="btn btn-primary" value="Adicionar" />
+                <span disabled class="btn btn-info">R$1.134,00</span>
+
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 list-item">
+                <span class="p-cart">Video Games</span>
+                <span class="p-name">Video Games - Produto 2</span>
+                <span class="p-description">Produto Video Games - Produto 2 ...</span>
+                <input type="button" class="btn btn-primary" value="Adicionar" />
+                <span disabled class="btn btn-info">R$1.775,00</span>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2018 - Meu Ecommerce</p>
+        </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
