@@ -13,11 +13,5 @@ namespace AspNetMvcEcommerce
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegistraBundlers(BundleTable.Bundles);
         }
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            var ex = Server.GetLastError();
-            Console.WriteLine(ex);
-        }
     }
 }

@@ -185,7 +185,6 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
-    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="CustomHtmlHelpers\Helpers.cs" />
@@ -288,8 +287,6 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Errors\InternalServerError.cshtml" />
-    <Content Include="Views\Errors\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
