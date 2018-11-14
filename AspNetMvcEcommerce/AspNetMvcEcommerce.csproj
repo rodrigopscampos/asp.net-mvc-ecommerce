@@ -180,7 +180,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomHtmlHelpers\Helpers.cs" />
     <Compile Include="Database\Categoria.cs" />
@@ -193,8 +192,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CestaDeCompra.cs" />
-    <Compile Include="Models\CestaDeCompraItem.cs" />
     <Compile Include="Models\CheckoutDetalhesViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,9 +263,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\Checkout\Continuar.cshtml" />
-    <Content Include="Views\Checkout\CompraRealizadaComSucesso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

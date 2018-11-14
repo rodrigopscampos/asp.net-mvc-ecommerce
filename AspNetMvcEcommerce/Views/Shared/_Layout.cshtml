@@ -6,9 +6,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @RenderSection("scripts", required: false)
-
-
-
 </head>
 <body>
 
@@ -30,7 +27,7 @@
             </ul>
 
             <div class="nav-item">
-                <a class="nav-link" href="/Checkout">Carrinho: @string.Format("{0}", ViewBag?.CarrinhoDeCompras?.QuantidadeDeItens ?? 0)  </a>
+                <a class="nav-link" href="#">Carrinho: 0</a>
             </div>
         </div>
     </nav>

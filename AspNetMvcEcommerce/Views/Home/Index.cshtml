@@ -7,22 +7,15 @@
 </div>
 
 <div class="row">
-    <form action="" method="get" id="frmCategoria" class="option">
+    <form>
         <span>Categorias</span>
 
-        <select id="categoria" name="categoria" class="form-control" onchange="$('#frmCategoria').submit()">
-            <option value="">Tudo</option>
+        <select id="categoria" name="categoria" class="form-control" ">
+            <option selected value="">Tudo</option>
 
             @foreach (var item in ViewBag.Categorias)
             {
-                if (ViewBag.CategoriaSelectionada == item.Descricao)
-                {
-                    <option selected value="@item.Descricao">@item.Descricao</option>
-                }
-                else
-                {
-                    <option value="@item.Descricao">@item.Descricao</option>
-                }
+                <option value="@item.Descricao">@item.Descricao</option>
             }
 
         </select>
@@ -47,7 +40,7 @@ else
                 <span class="p-description">@item.Descricao</span>
 
                 <div class="add-carinho">
-                    @Html.ActionLink("Adicionar", "AdicionaAoCarrinho", "Home", new { id = item.Id, categoria = ViewBag.CategoriaSelectionada }, new { @class= "btn btn-primary" })
+                    <a href="#" class="btn btn-primary">Adiciona</a>
                     <span disabled class="btn btn-info">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", item.Preco)</span>
                 </div>
             </div>

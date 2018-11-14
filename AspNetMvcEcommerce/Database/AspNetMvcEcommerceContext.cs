@@ -32,7 +32,7 @@ namespace AspNetMvcEcommerce
             _categorias.Add(GerarCategoria("TVs", tvs));
 
             _produtos.AddRange(tvs);
-            _categorias.Add(GerarCategoria("Notebooks", videoGames));
+            _categorias.Add(GerarCategoria("Video Games", videoGames));
         }
 
         public void SaveChanges() { }
