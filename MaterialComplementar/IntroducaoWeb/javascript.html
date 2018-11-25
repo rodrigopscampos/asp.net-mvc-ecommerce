@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript</title>
+
+    <script type="text/Javascript">
+        function exibirHora() {
+            document.getElementById('minha_div').innerHTML = new Date().toLocaleTimeString();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <button onclick="alert('Olá Mundo');">Click-me para ver um alert</button>
+    </br>
+    <button onclick="exibirHora()">Click-me para ver a hora</button>
+    <span id="minha_div"> - </span>
+</body>
+
+</html>
+
+
+
+
