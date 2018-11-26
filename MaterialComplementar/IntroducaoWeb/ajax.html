@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script>
+        function realizarPost() {
+            var endereco = $("#txt_endereco").val();
+
+            $.post(endereco, function (data) {
+                $("#txtarea_resultado").val(data);
+            })
+            .fail(function (data) {
+                $("#txtarea_resultado").val(JSON.stringify(data));
+            });
+        }
+
+        function realizaGet() {
+            var endereco = $("#txt_endereco").val();
+
+            $.get(endereco, function (data) {
+                $("#txtarea_resultado").val(data);
+            })
+            .fail(function (data) {
+                $("#txtarea_resultado").val(JSON.stringify(data));
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <form>
+        <input type="text" id="txt_endereco" placeholder="Endereço">
+        <input type="button" value="Realizar Post" onclick="realizarPost()">
+        <input type="button" value="Realizar Get" onclick="realizaGet()">
+    </form>
+    <textarea style="margin-top: 20px; width: 50%; " rows="5" id="txtarea_resultado"></textarea>
+    <button onclick="$('#txtarea_resultado').val('');"> Limpar </button>
+</body>
+
+</html>
