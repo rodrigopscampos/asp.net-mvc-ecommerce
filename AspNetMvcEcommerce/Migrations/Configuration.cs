@@ -9,6 +9,7 @@ namespace AspNetMvcEcommerce.Migrations
     internal sealed class Configuration : DbMigrationsConfiguration<AspNetMvcEcommerceContext>
     {
         static Random _random = new Random();
+        const string ImageFolder = "img";
 
         public Configuration()
         {
@@ -20,10 +21,10 @@ namespace AspNetMvcEcommerce.Migrations
             context.Categorias.AddOrUpdate(
                 key => key.Descricao,
 
-                GerarCategoria("Smartphones", 5, 200, 5000),
-                GerarCategoria("Notebooks", 10, 800, 10000),
-                GerarCategoria("TVs", 10, 400, 1000),
-                GerarCategoria("Video Games", 3, 500, 2000)
+                GerarCategoriaComProdutos("Smartphones", 5, 200, 5000),
+                GerarCategoriaComProdutos("Notebooks", 10, 800, 10000),
+                GerarCategoriaComProdutos("TVs", 10, 400, 1000),
+                GerarCategoriaComProdutos("Video Games", 3, 500, 2000)
                 );
 
             var passwordHasher = new PasswordHasher();
@@ -42,7 +43,7 @@ namespace AspNetMvcEcommerce.Migrations
                 context.Roles.Add(adminRole);
             }
 
-            if (!context.Users.Any(u => u.UserName == "admin"))
+            if (!context.Users.Any(u => u.UserName.Contains("admin")))
             {
                 context.Users.Add(admin);
                 context.SaveChanges();
@@ -60,14 +61,15 @@ namespace AspNetMvcEcommerce.Migrations
             */
         }
 
-        private Categoria GerarCategoria(string descricao, int qtdadeProdutos, int precoMinimo, int precoMaximo)
+        private Categoria GerarCategoriaComProdutos(string descricao, int qtdadeProdutos, int precoMinimo, int precoMaximo)
         {
             var produtos = Enumerable.Range(0, qtdadeProdutos)
                 .Select(i => new Produto
                 {
                     Nome = $"{descricao} - Produto {i}",
                     Descricao = $"Produto {descricao} - Produto {i} ...",
-                    Preco = _random.Next(precoMinimo * 100, precoMaximo * 100) / 100
+                    Preco = _random.Next(precoMinimo * 100, precoMaximo * 100) / 100,
+                    Imagem = ImageFolder + "/" + descricao + "_" + i + ".jpg"
                 })
                 .ToArray();
 

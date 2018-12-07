@@ -10,12 +10,24 @@
     padding-right: 15px;
 }
 
+
+.p-image {
+    max-width: 230px;
+}
+
+
 .list-item {
     border: 1px solid rgb(98,98,250);
     margin: 5px 5px 0px 0px;
     padding: 15px 10px;
     min-width: 250px;
 }
+
+    .list-item:hover {
+        font-size: 101%;    
+    }
+
+    
 
 .p-cat {
     color: rgb(98,98,250);
